@@ -11,7 +11,7 @@ from ascii_art_functions import character_selection_horse_and_knight
 from ascii_art_functions import mountain_range
 from ascii_art_functions import screen_line
 
-def get_input(string: str, valid_options: list[str]) -> str:
+def get_input(string: str, valid_options: list) -> str:
     """
     Deals with error checking for inputs
     """
