@@ -200,10 +200,7 @@ def main():
         sys.exit()
 
     elif choice == '4':
-        print_text('Credits:\n', 0.3)
-        print('Character design: Louis', 0.5)
-        print_text('Game design: Soma', 0.5)
-        print_text('Story boarding: My sister')
+        pass
 
     else:
         print_text('incorrect response. please try again')
