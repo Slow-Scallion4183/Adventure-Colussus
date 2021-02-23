@@ -12,11 +12,12 @@ from ascii_art_functions import character_selection_horse_and_knight
 from ascii_art_functions import mountain_range
 from ascii_art_functions import screen_line
 
-from subprocess import call
-
 CLEAR_SCREEN = 'clear'
 if platform.system() == 'Windows':
     CLEAR_SCREEN = 'cls'
+
+random.seed(datetime.datetime.now())
+
 
 def get_input(string: str, valid_options: list) -> str:
     """
@@ -143,11 +144,14 @@ def character_generator():
     time.sleep(1)
     print_text(
         f'\n > Welcome mighty hero! You shall henceforth be known as: {name} !!!\n ', 0.3)
-    print_text('> A fine choice')
+    print_text('> A perfect choice!')
     print_text('\n')
 
     print_text(
         ' \n > Now then. I guess you should be on your way! You have a journey to start and a belly to fill!\n')
+
+    # Should Implement The Script And Story From Here.
+
     print_text(
         ' > I have to say, I have rather enjoyed your company! Feel free to come by at any time!\n ')
     print_text('> Goodbye and god speed!', 1)

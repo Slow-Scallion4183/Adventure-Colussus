@@ -1,0 +1,15 @@
+Note: This Contains The Basic Content Of The Game
+
+(Human: Male/Female)Player (Can Attack: Sword/Bow/Hand, Use Powers, Kill Zombies, Move, Pick Loot, Defence:Armor) - Health: 150
+Zombies (Drop Loot, Attack Player - DMG : 10)
+Villager: (Trade)
+
+Loot: (Gold Coins, Diamonds, Emeralds, Sword, Armor Set)
+Combat: (Armor Set(Prevent Damage: 5)/Sword: 8 DMG/Bow: 6 DMG/)
+
+
+
+
+
+
+
