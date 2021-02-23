@@ -1,5 +1,6 @@
 import datetime
 import pickle
+import platform
 import random
 import time
 import sys
@@ -13,10 +14,9 @@ from ascii_art_functions import screen_line
 
 from subprocess import call
 
-
-def clear_screen():
-    _ = call('clear' if name == 'posix' else 'cls')
-
+CLEAR_SCREEN = 'clear'
+if platform.system() == 'Windows':
+    CLEAR_SCREEN = 'cls'
 
 def get_input(string: str, valid_options: list) -> str:
     """
@@ -143,7 +143,7 @@ def character_generator():
     time.sleep(1)
     print_text(
         f'\n > welcome mighty hero! you shall be named: {name} !!!\n ', 0.3)
-    print_text(' > a fine choice')
+    print_text('> a fine choice')
     print_text('\n')
 
     print_text(
@@ -157,7 +157,7 @@ def character_generator():
         f" > [ health: {health}, damage: {damage}, shield: {shield}, magic: {magic}, luck: {luck}, name: {name} ]")
 
     print_text(
-        '\n > we should now save your character if you want to come back to it later - character file name: 9\n ')
+        '\n > we should now save your character if you want to come back to it later - character file name: \n ')
     character = {'health': health, 'damage': damage,
                  'shield': shield, 'magic': magic, 'luck': luck, 'name': name}
     character_file_name = input('> ')
@@ -181,7 +181,7 @@ def main():
     way or another. 
     """
     time.sleep(0.5)
-    clear_screen()
+    system(CLEAR_SCREEN)
     time.sleep(0.5)
     show_date_and_time = datetime.datetime.now()
     screen_line()
@@ -200,8 +200,7 @@ def main():
     if choice == '1':
         print_text(
             "\n > you have chosen to create a new game: redirecting...", 0.75)
-        # system('cls')
-        clear_screen()
+        system(CLEAR_SCREEN)
         screen_line()
         print('  \n  we will begin with creating your character:                                        quick tip: choose wisely')
         screen_line()
@@ -214,8 +213,7 @@ def main():
     elif choice == '2':
         print_text(
             "\n > you have chosen to load an existing game: redirecting...", 0.75)
-        # system('cls')
-        clear_screen()
+        system(CLEAR_SCREEN)
         time.sleep(0.5)
         screen_line()
         print('  \n  we will begin with choosing an existing character:                             quick tip: make sure it exists!')
