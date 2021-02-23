@@ -1,3 +1,5 @@
+Note: This Contains The Basic Content Of The Game
+
 (Human: Male/Female)Player (Can Attack: Sword/Bow/Hand, Use Powers, Kill Zombies, Move, Pick Loot, Defence:Armor) - Health: 150
 Zombies (Drop Loot, Attack Player - DMG : 10)
 Villager: (Trade)
