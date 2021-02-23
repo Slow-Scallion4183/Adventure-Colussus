@@ -62,10 +62,10 @@ def save_character(save_name: str, character: Dict[str, Any]) -> None:
     Saves the current character to a pickle database.
     """
     save_name_pickle = save_name + '.pickle'
-    print_text(' > saving character\n', 1)
+    print_text(' > Saving character\n', 1)
     with open(save_name_pickle, 'wb') as f:
         pickle.dump(character, f)
-        print_text(' > character saved successfully')
+        print_text(' > Character saved successfully')
 
 
 def load_character(load_name):
@@ -73,12 +73,12 @@ def load_character(load_name):
     Loads the selected character from a pickle database.
     """
     load_name_pickle = load_name + '.pickle'
-    print_text(' > loading character...\n', 1)
+    print_text(' > Loading character...\n', 1)
     pickle_in = open(load_name_pickle, "rb")
     character = pickle.load(pickle_in)
-    print_text(' > character loaded successfully\n')
-    print_text(f"\n > welcome back {character['name']}!!!\n", 0.5)
-    print_text('\n > here are your stats from last time: \n', 0.5)
+    print_text(' > Character loaded successfully\n')
+    print_text(f"\n > Welcome back {character['name']}!!!\n", 0.5)
+    print_text('\n > Here are your stats from last time: \n', 0.5)
     print(f' > {character} ')
 
 
@@ -87,11 +87,11 @@ def character_generator():
     Generates a character determined by user input and saves it in
     a pickle database.
     """
-    print_text('\n > we have reached the first crucial part of your journey: we must choose the path that you will take! the decision\n', 0.5)
+    print_text('\n > We have reached the first crucial part of your journey: We must choose the path that you will take! The decision\n', 0.5)
     print_text(' > is up to you my friend! Whether you choose to be a bloodthirsty warrior or a cunning and strategic fighter,\n', 0.8)
     print_text(' > the choice is up to you!\n', 0.5)
-    print_text('\n > now then, lets get right into it!', 0.8)
-    print_text(' are you more of a tanky player[1] or a strategic player[2]?')
+    print_text('\n > Now then, lets get right into it!', 0.8)
+    print_text(' Are you more of a tanky player[1] or a strategic player[2]?')
 
     player_t_choice_1 = get_input('\n > ', ['1', '2'])
 
@@ -103,9 +103,9 @@ def character_generator():
         health = 75
         damage = 50
 
-    print_text('\n > so, we have that out of the way, lets carry on!', 0.8)
-    print_text(' oh of course! sorry to forget! another quick question: ', 0.5)
-    print_text('do you like \n')
+    print_text('\n > So, we have that out of the way, Let\'s carry on!', 0.8)
+    print_text(' Oh of course! Sorry to forget! Another quick question: ', 0.5)
+    print_text('Do you like \n')
     print_text(
         ' > to use magic from great distances[1] or run in to the thick of battle wielding a deadly blade[2]? ')
 
@@ -120,21 +120,21 @@ def character_generator():
         magic = 45
 
     print_text(
-        '\n > good good! we have decided your play style and your preferred ways of attacking the enemy!\n', 0.5)
+        '\n > Good good! We have decided your play style and your preferred ways of attacking the enemy!\n', 0.5)
     print_text(
-        ' > now, we must see what luck we are able to bestow upon you. be warned: it is entirely random!\n', 0.8)
-    random_luck = input('\n > press enter to roll a dice...')
+        ' > Now, we must see what luck we are able to bestow upon you. Be warned: it is entirely random!\n', 0.8)
+    random_luck = input('\n > Press enter to roll a dice...')
     time.sleep(0.3)
-    print_text(' > rolling dice...\n')
+    print_text(' > Rolling dice...\n')
     luck = random.randint(0, 10)
     time.sleep(1)
-    print_text(f' > your hero has {luck} luck out of 10!\n', 0.8)
+    print_text(f' > Your hero has {luck} luck out of 10!\n', 0.8)
     print_text(
-        '\n > at last! we have reached the most important part of creating your character! The naming!\n')
+        '\n > At last! We have reached the most important part of creating your character! The naming!\n')
     print_text(
-        ' > choose wisely my friend. your hero will be named this for the rest of their lives...\n', 1)
+        ' > Choose wisely my friend. Your hero will be named this for the rest of their lives...\n', 1)
 
-    print_text('\n > what should your hero be named?\n ')
+    print_text('\n > What should your hero be named?\n ')
 
     name = ''
     while not name:
@@ -142,22 +142,22 @@ def character_generator():
 
     time.sleep(1)
     print_text(
-        f'\n > welcome mighty hero! you shall be named: {name} !!!\n ', 0.3)
-    print_text('> a fine choice')
+        f'\n > Welcome mighty hero! You shall henceforth be known as: {name} !!!\n ', 0.3)
+    print_text('> A fine choice')
     print_text('\n')
 
     print_text(
-        ' \n > now then. i guess you be on your way! you have a journey to start and a belly to fill!\n')
+        ' \n > Now then. I guess you should be on your way! You have a journey to start and a belly to fill!\n')
     print_text(
-        ' > i have to say, i have rather enjoyed your company! feel free to come by at any time!\n ')
-    print_text('> goodbye and god speed!', 1)
+        ' > I have to say, I have rather enjoyed your company! Feel free to come by at any time!\n ')
+    print_text('> Goodbye and god speed!', 1)
     print('\n')
-    print_text(' > your final stats are as follows: \n', 0.3)
+    print_text(' > Your final stats are as follows: \n', 0.3)
     print(
         f" > [ health: {health}, damage: {damage}, shield: {shield}, magic: {magic}, luck: {luck}, name: {name} ]")
 
     print_text(
-        '\n > we should now save your character if you want to come back to it later - character file name: \n ')
+        '\n > We should now save your character if you want to come back to it later - character file name: \n ')
     character = {'health': health, 'damage': damage,
                  'shield': shield, 'magic': magic, 'luck': luck, 'name': name}
     character_file_name = input('> ')
@@ -191,18 +191,18 @@ def main():
     time.sleep(0.5)
     mountain_range()
     screen_line()
-    print('\n > [1] create new game')
-    print(' > [2] load existing game')
-    print(' > [3] end game')
-    print(' > [4] credits')
+    print('\n > [1] Create new game')
+    print(' > [2] Load existing game')
+    print(' > [3] End game')
+    print(' > [4] Credits')
     choice = get_input("\n > ", ['1', '2', '3', '4'])
 
     if choice == '1':
         print_text(
-            "\n > you have chosen to create a new game: redirecting...", 0.75)
+            "\n > You have chosen to create a new game: Redirecting...", 0.75)
         system(CLEAR_SCREEN)
         screen_line()
-        print('  \n  we will begin with creating your character:                                        quick tip: choose wisely')
+        print('  \n  We will begin with creating your character:                                        Quick tip: Choose wisely')
         screen_line()
         time.sleep(0.5)
         character_selection_horse_and_knight()
@@ -212,28 +212,28 @@ def main():
 
     elif choice == '2':
         print_text(
-            "\n > you have chosen to load an existing game: redirecting...", 0.75)
+            "\n > You have chosen to load an existing game: Redirecting...", 0.75)
         system(CLEAR_SCREEN)
         time.sleep(0.5)
         screen_line()
-        print('  \n  we will begin with choosing an existing character:                             quick tip: make sure it exists!')
+        print('  \n  We will begin with choosing an existing character:                             Quick tip: Make sure it exists!')
         screen_line()
         time.sleep(0.5)
         character_selection_horse_and_knight()
         screen_line()
-        character_file_name = input('\n > character file name: ')
+        character_file_name = input('\n > Character file name: ')
         load_character(character_file_name)
 
     elif choice == '3':
-        print_text(' > ending session...', 0.5)
-        print_text(' > session ended successfully \n', 1)
+        print_text(' > Ending session...', 0.5)
+        print_text(' > Session ended successfully \n', 1)
         sys.exit()
 
     elif choice == '4':
         pass
 
     else:
-        print_text('incorrect response. please try again')
+        print_text('Invalid response. Please try again')
 
 
 if __name__ == '__main__':
