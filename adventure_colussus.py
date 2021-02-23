@@ -143,11 +143,14 @@ def character_generator():
     time.sleep(1)
     print_text(
         f'\n > Welcome mighty hero! You shall henceforth be known as: {name} !!!\n ', 0.3)
-    print_text('> A fine choice')
+    print_text('> A perfect choice!')
     print_text('\n')
 
     print_text(
         ' \n > Now then. I guess you should be on your way! You have a journey to start and a belly to fill!\n')
+               
+    #Should Implement The Script And Story From Here.
+               
     print_text(
         ' > I have to say, I have rather enjoyed your company! Feel free to come by at any time!\n ')
     print_text('> Goodbye and god speed!', 1)
