@@ -1,0 +1,16 @@
+(Human: Male/Female)Player (Can Attack: Sword/Bow/Hand, Use Powers, Kill Zombies, Move, Pick Loot, Defence:Armor) - Health: 150
+Zombies (Drop Loot, Attack Player - DMG : 10)
+Villager: (Trade)
+
+Loot: (Gold Coins, Diamonds, Emeralds, Sword, Armor Set)
+Combat: (Armor Set/Sword/Bow/)
+
+
+Storyline:
+
+Story Begins From Player Being Exiled. He Has To Escape The Zombies And Gain Coins To Trade And Defeat A Final Boss Who Has Ten Times The Health Of The Player
+And Kill It To Get And Gets And Gets Saved From His Sins To Get To His Kingdom Back. 
+
+
+
+
