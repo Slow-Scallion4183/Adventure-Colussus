@@ -1,4 +1,4 @@
-from __init__ import *
+from adventure_colussus import *
 import time
 import random
 
