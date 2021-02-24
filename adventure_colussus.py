@@ -16,8 +16,6 @@ CLEAR_SCREEN = 'clear'
 if platform.system() == 'Windows':
     CLEAR_SCREEN = 'cls'
 
-random.seed(datetime.datetime.now())
-
 
 def get_input(string: str, valid_options: list) -> str:
     """
