@@ -9,4 +9,4 @@ Edit: We now have 5 people working on the project (which for me is really cool) 
 
 IMPORTANT INFO:
 
-The development branch is where the most changes to the game will happen. Once we have reached an important milestons it will be compared and then merged with the master branch.
+The development branch is where the most changes to the game will happen. Once we have reached an important milestones it will be compared and then merged with the master branch.
