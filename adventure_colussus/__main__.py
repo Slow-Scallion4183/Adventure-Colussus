@@ -54,22 +54,25 @@ def main():
         character_selection_horse_and_knight()
         screen_line()
         character_file_name = input('\n > Character file name: ')
-        load_character(character_file_name)
-        # tests
-        bob = Ranger('Bob')
-        jim = Brawler('Jim')
-        print(jim.attack('Hands', bob))
-        print(bob.attack('Hands', jim))
-        print(jim.attack('Bow', bob))
-        print(bob.attack('Sword', jim))
-        print(jim.attack('Sword', bob))
-        print(bob.attack('Bow', jim))
+        #load_character(character_file_name)
 
-        z = Zombie()
+        # The new character load
+        character = entities.Human.load(f"./{character_file_name}.dat")
+        # tests
+        bob = entities.Ranger.generate('Bob')
+        jim = entities.Brawler.generate('Jim')
+        print(jim.attack(1, bob))
+        print(bob.attack(1, jim))
+        print(jim.attack(2, bob))
+        print(bob.attack(1, jim))
+        print(jim.attack(1, bob))
+        print(bob.attack(2, jim))
+
+        z = entities.Zombie.generate()
 
         while z.current_health > 0:
-            print(jim.attack('Sword', z))
-            print(bob.attack('Bow', z))
+            print(jim.attack(1, z))
+            print(bob.attack(2, z))
 
     elif choice == '3':
         print_text(' > Ending session...', 0.5)
