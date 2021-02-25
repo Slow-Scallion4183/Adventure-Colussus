@@ -210,7 +210,6 @@ class Entity(pydantic.BaseModel):
         """
         with open(file,"r") as f:
             j = json.load(f)
-            print(j)
             return cls(**j)
     @classmethod
     def generate(cls, name=''):
