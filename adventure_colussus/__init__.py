@@ -7,16 +7,20 @@ import sys
 
 from os import system, name
 from typing import Dict, Any
+from random import randint, choice
 
-from ascii_art_functions import character_selection_horse_and_knight
-from ascii_art_functions import mountain_range
-from ascii_art_functions import screen_line
 
-from subprocess import call
+import adventure_colussus.entities as entities
 
-CLEAR_SCREEN = 'clear'
-if platform.system() == 'Windows':
-    CLEAR_SCREEN = 'cls'
+
+
+
+
+
+
+
+
+#functions
 
 def get_input(string: str, valid_options: list) -> str:
     """
@@ -148,9 +152,9 @@ def character_generator():
 
     print_text(
         ' \n > Now then. I guess you should be on your way! You have a journey to start and a belly to fill!\n')
-               
-    #Should Implement The Script And Story From Here.
-               
+
+    # Should Implement The Script And Story From Here.
+
     print_text(
         ' > I have to say, I have rather enjoyed your company! Feel free to come by at any time!\n ')
     print_text('> Goodbye and god speed!', 1)
@@ -161,83 +165,67 @@ def character_generator():
 
     print_text(
         '\n > We should now save your character if you want to come back to it later - character file name: \n ')
-    character = {'health': health, 'damage': damage,
-                 'shield': shield, 'magic': magic, 'luck': luck, 'name': name}
+    character_dict = {'health': health, 'damage': damage,
+                        'shield': shield, 'magic': magic, 'luck': luck, 'name': name}
+
+    # Generate an initial character
+    character = entities.Human.generate(name)
+
+    # Update the character
+    character = entities.Human(**(dict(character) | character_dict))
+    
+    # Ask for the file name
     character_file_name = input('> ')
-    save_character(character_file_name, character)
 
-# non player characters
-
-
-def Louis_NPC(joke, mood):
-    '''
-    A function that creates our 1st NPC called Louis
-    '''
-    existence = True
-    print(joke)
-    print(f'I am feeling {mood} today')
+    # Save the file
+    character.save(f"./{character_file_name}.dat")
 
 
-def main():
-    """
-    This is where everything to do with the main game is. This includes all functions in one
-    way or another. 
-    """
-    time.sleep(0.5)
-    system(CLEAR_SCREEN)
-    time.sleep(0.5)
-    show_date_and_time = datetime.datetime.now()
-    screen_line()
-    print('\n  <Adventure Colossus>         version: v', counter,
-          '| current date: ', show_date_and_time, '| date of creation: 9.2.2021')
-    screen_line()
-    time.sleep(0.5)
-    mountain_range()
-    screen_line()
-    print('\n > [1] Create new game')
-    print(' > [2] Load existing game')
-    print(' > [3] End game')
-    print(' > [4] Credits')
-    choice = get_input("\n > ", ['1', '2', '3', '4'])
-
-    if choice == '1':
-        print_text(
-            "\n > You have chosen to create a new game: Redirecting...", 0.75)
-        system(CLEAR_SCREEN)
-        screen_line()
-        print('  \n  We will begin with creating your character:                                        Quick tip: Choose wisely')
-        screen_line()
-        time.sleep(0.5)
-        character_selection_horse_and_knight()
-        screen_line()
-        time.sleep(0.3)
-        character_generator()
-
-    elif choice == '2':
-        print_text(
-            "\n > You have chosen to load an existing game: Redirecting...", 0.75)
-        system(CLEAR_SCREEN)
-        time.sleep(0.5)
-        screen_line()
-        print('  \n  We will begin with choosing an existing character:                             Quick tip: Make sure it exists!')
-        screen_line()
-        time.sleep(0.5)
-        character_selection_horse_and_knight()
-        screen_line()
-        character_file_name = input('\n > Character file name: ')
-        load_character(character_file_name)
-
-    elif choice == '3':
-        print_text(' > Ending session...', 0.5)
-        print_text(' > Session ended successfully \n', 1)
-        sys.exit()
-
-    elif choice == '4':
-        pass
-
-    else:
-        print_text('Invalid response. Please try again')
 
 
-if __name__ == '__main__':
-    main()
+
+
+
+
+
+
+
+
+
+
+
+# ascii art
+
+def mountain_range():
+    print(r"""
+                  /\                       /\                        /\                       /\
+                 /  \                     /  \                      /  \                     /  \
+                /    \   /\      /\      /    \   /\               /    \   /\      /\      /    \   /\
+               /      \ /  \    /  \    /      \ /  \             /      \ /  \    /  \    /      \ /  \
+              /  /\    /    \  /    \  /  /\    /    \    /\     /  /\    /    \  /    \  /  /\    /    \
+             /  /  \  /      \/      \/  /  \  /      \  /  \   /  /  \  /      \/      \/  /  \  /      \
+            /  /    \/ /\     \      /  /    \/ /\     \/    \ /  /    \/ /\     \      /  /    \/ /\     \
+           /  /      \/  \/\   \    /  /      \/  \/\   \     /  /      \/  \/\   \    /  /      \/  \/\   \
+       ___/__/_______/___/__\___\__/__/_______/___/__\___\___/__/_______/___/__\___\__/__/_______/___/__\___\___
+    """)
+
+
+def character_selection_horse_and_knight():
+        print(r"""
+
+                 ,;~;,                                                                ,;;,.
+                    /\_                                                              /~\
+                   (  /                                                             ([-])
+                   (()      //)                                                   ,_.~~~.
+                   | \\  ,,;;'\                                                 ()--|   ,\
+               __ _(  )m=(((((((((((((================--------               ,_//   |   |>)
+              /'  ' '()/~' '.(, |                                         (~'  m''~)(   )/
+           ,;(      )||     |  ~                                           \(~||~)/ //~\\
+          ,;' \    /-(.;,   )                                                 ||   ()   ()
+         ,;'   ) /       ) /                                                  ||   ()   ()
+               //         ||                                                  ||   ||   ||
+               )_\         )_\                                                || ,;.)   (.;,
+        """)
+
+def screen_line():
+    print(' _____________________________________________________________________________________________________________________')
