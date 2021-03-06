@@ -59,7 +59,7 @@ class Entity(pydantic.BaseModel):
     health_mult_2: int = 1
 
     # The name of the entity.
-    name: str = "Entity"
+    name: str = "Ent"
 
     # The current health of the entity defaults to zero.
     current_health: int = 0
@@ -117,7 +117,8 @@ class Entity(pydantic.BaseModel):
         """
             Returns a representation of the entity
         """
-        return f"<{self.__name__} {self.name} hp={self.current_health} lvl={self.level}>"
+        # return f"<{self.__name__} {self.name} hp={self.current_health} lvl={self.level}>"
+        return f"<{self.name} hp={self.current_health} lvl={self.level}>"
     
     def calculate_luck(self, value):
         """

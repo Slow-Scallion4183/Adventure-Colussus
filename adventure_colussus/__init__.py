@@ -208,9 +208,10 @@ def character_selection_horse_and_knight():
 def screen_line():
     print(' _____________________________________________________________________________________________________________________')
 
-
+"""
+I don't know what this is but it's causing a syntax error.
 == == == =
-
+"""
 
 def main():
     """
