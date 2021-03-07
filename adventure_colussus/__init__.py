@@ -25,7 +25,7 @@ def get_input(string: str, valid_options: list) -> str:
             return user_input
 
 
-def version_counter(filename="adventure_colussus_version_counter.dat"):
+def session_counter(filename="adventure_colussus_version_counter.dat"):
     """
     Determines the version of the last played game, either in the {VERSION_FILENAME}
     file, or generating a new file if none is found.
@@ -39,7 +39,7 @@ def version_counter(filename="adventure_colussus_version_counter.dat"):
         return val
 
 
-counter = version_counter()
+session_count = session_counter()
 
 
 def print_text(text: str, sleep_time: float = 0.0) -> None:
