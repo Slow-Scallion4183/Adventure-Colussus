@@ -117,7 +117,8 @@ class Entity(pydantic.BaseModel):
         """
             Returns a representation of the entity
         """
-        return f"<{self.__name__} {self.name} hp={self.current_health} lvl={self.level}>"
+        # return f"<{self.__name__} {self.name} hp={self.current_health} lvl={self.level}>"
+        return f"<{self.name} hp={self.current_health} lvl={self.level}>"
     
     def calculate_luck(self, value):
         """
