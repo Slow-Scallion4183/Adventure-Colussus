@@ -59,7 +59,7 @@ class Entity(pydantic.BaseModel):
     health_mult_2: int = 1
 
     # The name of the entity.
-    name: str = "Ent"
+    name: str = "Entity"
 
     # The current health of the entity defaults to zero.
     current_health: int = 0
