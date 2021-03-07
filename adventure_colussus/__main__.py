@@ -17,7 +17,7 @@ def main():
     time.sleep(0.5)
     show_date_and_time = datetime.datetime.now()
     screen_line()
-    print('\n  <Adventure Colossus>         version: v', counter,
+    print('\n  <Adventure Colossus>         session:', counter,
           '| current date: ', show_date_and_time, '| date of creation: 9.2.2021')
     screen_line()
     time.sleep(0.5)
