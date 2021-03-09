@@ -1,0 +1,13 @@
+{
+    "quest1":
+        {
+            "name": "Get Home, a demo",
+            "filename": "get_home.json"
+        },
+    "quest2":
+        {
+            "name": "Sample Plot 2",
+            "filename": "sample_plot_2.json"
+        }
+
+}

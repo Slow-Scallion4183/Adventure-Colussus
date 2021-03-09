@@ -1,0 +1,7 @@
+{
+    "notes": "This is a very basic attempt to try and mock up how plots might work. I've never used json in this manner and I'm not sure this is how it was intended when recommended, but let's see what works",
+    "first_choice": "You awaken on a road, behind you is a building you can't make out. What would you like to do?",
+    "first_choice_response_a": "Move to the building",
+    "first_choice_response_b": "Continue on the road"
+
+}
