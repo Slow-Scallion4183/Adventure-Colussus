@@ -19,17 +19,19 @@ def main():
     answer = ac.get_input(">", responses)
     quest_file = filenames[int(answer)-1]
     # quest_file = "../plots_json/" + quest_file
-    print(quest_file + "\n" + str(type(quest_file)))
+    # print(quest_file + "\n" + str(type(quest_file)))
     with open(quest_file) as qf:
         quest = json.load(qf)
-    userchoice = print_question(quest["one"])
+    userchoice = print_question(quest["one"], quest)
     while userchoice != "Null":
-        print_question(quest[userchoice])
+        print_question(quest[userchoice], quest)
 
 
-def print_question(question):
+def print_question(question, quest):
     print(question["ask"])
-    return True
+    test = input(">")
+    print_question(quest[test])
+    return "twoa"
 
 
 if __name__ == "__main__":

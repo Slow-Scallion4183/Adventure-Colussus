@@ -1,5 +1,18 @@
 {
-    "first_choice": "This is a sample question",
-    "first_choice_response_a": "This is a sample response a",
-    "first_choice_response_b": "This is a sample response b"
+    "one":
+    {
+        "ask": "This is a sample question",
+        "options":
+        {
+            "first_choice_response_a": "This is a sample response a",
+            "next": "last"
+        },
+        
+            "first_choice_response_b": "This is a sample response b",
+            "next": "Last"
+        },
+    "last":
+    {
+        "next": "Null"
+    }
 }
