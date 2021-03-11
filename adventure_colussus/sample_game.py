@@ -23,15 +23,23 @@ def main():
     with open(quest_file) as qf:
         quest = json.load(qf)
     userchoice = print_question(quest["one"], quest)
-    while userchoice != "Null":
-        print_question(quest[userchoice], quest)
+    # while userchoice != "Null":
+    #     print_question(quest[userchoice], quest)
 
 
 def print_question(question, quest):
     print(question["ask"])
+    for index, option in enumerate(question["options"]):
+        print(f"{index}: {option}")
     test = input(">")
-    print_question(quest[test])
-    return "twoa"
+    user_choice = [int(test)]
+    # user_choice = quest[question]["options"][int(test)]
+    # user_choice = quest[question]["next"][(quest[question]["options"][int(test)])]
+    print(f"{quest[question]}")
+    # while test != "Null":
+    #     return print_question(quest[test], quest)
+    # return "You have reached the end of your quest."
+    # return "twoa"
 
 
 if __name__ == "__main__":
