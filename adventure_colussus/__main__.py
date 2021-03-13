@@ -23,10 +23,13 @@ def main():
     time.sleep(0.5)
     mountain_range()
     screen_line()
-    print('\n > [1] Create new game')
-    print(' > [2] Load existing game')
-    print(' > [3] End game')
-    print(' > [4] Credits')
+    create_load_menu = {
+        "> [1] Create new game\n": 0.5,
+        "> [2] Load existing game\n": 0.5,
+        "> [3] End game\n": 0.5,
+        "> [4] Credits\n": 0.5
+    }
+    print_block(create_load_menu)
     choice = get_input("\n > ", ['1', '2', '3', '4'])
 
     if choice == '1':

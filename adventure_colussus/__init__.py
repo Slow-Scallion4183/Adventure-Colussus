@@ -25,7 +25,7 @@ def get_input(string: str, valid_options: list) -> str:
             return user_input
 
 
-def session_counter(filename="adventure_colussus_version_counter.dat"):
+def session_counter(filename="adventure_colussus_seesion_counter.dat"):
     """
     Determines the version of the last played game, either in the {VERSION_FILENAME}
     file, or generating a new file if none is found.
@@ -213,7 +213,7 @@ I don't know what this is but it's causing a syntax error.
 == == == =
 """
 
-def main():
+def main_menu():
     """
     This is where everything to do with the main game is. This includes all functions in one
     way or another. 
@@ -221,18 +221,30 @@ def main():
     time.sleep(0.5)
     system(CLEAR_SCREEN)
     time.sleep(0.5)
+    '''
+    change datetime format no seconds
+    '''
     show_date_and_time = datetime.datetime.now()
     screen_line()
-    print('\n  <Adventure Colossus>         version: v', counter,
+    print('\n  <Adventure Colossus>         session: ', session_count,
           '| current date: ', show_date_and_time, '| date of creation: 9.2.2021')
     screen_line()
     time.sleep(0.5)
     mountain_range()
     screen_line()
+    '''
+    encapsulate in print_block() call
+    '''
     print('\n > [1] Create new game')
     print(' > [2] Load existing game')
     print(' > [3] End game')
     print(' > [4] Credits')
+    '''
+    add choices dictionary. keys are answers, values are next_steps
+    choices = {1: "charachter_generator", 2: "load_character"}
+    choice = get_input("\n > " [str(key) for key in choices.keys()])
+    choices[choice]()
+    '''
     choice = get_input("\n > ", ['1', '2', '3', '4'])
 
     if choice == '1':
