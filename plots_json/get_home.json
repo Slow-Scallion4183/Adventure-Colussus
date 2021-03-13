@@ -1,39 +1,35 @@
 {
-	"one":
-	{
+	"one": {
 		"ask": "You awaken on a road, behind you is a building you can't make out. What would you like to do?",
-		"options":
-		{
-			"first_choice_response_a": "Move to the building",
-			"next": "twoa"
-		},
-			"first_choice_response_b": "Continue on the road",
-			"next": "twob"
-		},
-	"twoa":
-	{
+		"options": [
+			"Move to the building",
+			"Continue on the road"
+		],
+		"next": {
+			"Move to the building": "twoa",
+			"Continue on the road": "twob"
+		}
+	},
+	"twoa": {
 		"ask": "As you approach the building you see it is your home. What woould you like to do?",
-		"options":
-		{
-			"second_choice_response_c": "Go inside the building",
-			"next": "last"
-		},
-			"second_choice_response_d": "Return to the starting place.",
-			"next": "last"
-		},
-	"twob":
-	{
-		"ask": "You awaken on a road, behind you is a building you can't make out. What would you like to do?",
-		"options":
-		{
-			"second_choice_response_c": "Go inside the building",
-			"next": "last"
-		},
-			"second_choice_response_d": "Return to the starting place.",
-			"next": "last"
-		},
-	"last":
-	{
-		"next": "Null"
+		"options": [
+			"Go inside the building",
+			"Return to the starting place."
+		],
+		"next": {
+			"Go inside the building": "Null",
+			"Return to the starting place.": "one"
+		}
+	},
+	"twob": {
+		"ask": "You continue on the road for a long time as it slowly bends, eventually coming upon a structure. What would you like to do?",
+		"options": [
+			"Go inside the structure",
+			"Return to back along the road."
+		],
+		"next": {
+			"Go inside the structure": "Null",
+			"Return to back along the road.": "one"
+		}
 	}
 }
