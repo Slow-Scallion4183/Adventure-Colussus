@@ -243,12 +243,12 @@ def main_menu(CLEAR_SCREEN='clear'):
     show_date_and_time = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
     screen_line()
     # print('\n  <Adventure Colossus>     session:', session_count, '| version:', __version__,
-          # '| current date:', show_date_and_time, '| date of creation: 9.2.2021')
+    # '| current date:', show_date_and_time, '| date of creation: 9.2.2021')
 
     title1 = "\n  <Adventure Colossus>"
     a = len(title1)
     title2 = f"session: {session_count} | current date: {show_date_and_time} | date of creation: 9.2.2021 | version: {__version__} "
-    print(title1 + title2.rjust(118-a," "))
+    print(title1 + title2.rjust(118-a, " "))
     screen_line()
     time.sleep(0.5)
     mountain_range()
@@ -271,9 +271,8 @@ def new_character(CLEAR_SCREEN='clear'):
     screen_line()
     # print('  \n  We will begin with creating your character:                                        Quick tip: Choose wisely')
     line1 = '  \n  We will begin with creating your character:'
-    linelen = len(line1)
     line2 = 'Quick tip: Choose wisely\n'
-    print_text(line1 + line2.rjust(118-linelen, " "))
+    print_text(line1 + line2.rjust(118-(len(line1[3:])), " "))
     screen_line()
     time.sleep(0.5)
     character_selection_horse_and_knight()
@@ -290,9 +289,8 @@ def load_character(CLEAR_SCREEN='clear'):
     screen_line()
     # print('  \n  We will begin with choosing an existing character:                             Quick tip: Make sure it exists!')
     line1 = '  \n  We will begin with choosiNg an existing character:'
-    linelen = len(line1)
     line2 = 'Quick tip: Make sure it exists!\n'
-    print_text(line1 + line2.rjust(118-linelen, " "))
+    print_text(line1 + line2.rjust(118-(len(line1[3:])), " "))
     screen_line()
     time.sleep(0.5)
     character_selection_horse_and_knight()
