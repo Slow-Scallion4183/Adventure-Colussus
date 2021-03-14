@@ -11,8 +11,8 @@ def load_quest():
     with open("./plots_json/all_quests.json") as jsonfile:
         quests = json.load(jsonfile)
 
-    # ac.print_text("What quest would you like to endeavor today?" + "\n")
-    print("What quest would you like to endeavor today?" + "\n")
+    print_text("What quest would you like to endeavor today?" + "\n")
+    # print("What quest would you like to endeavor today?" + "\n")
     filenames = []
     for index, option in enumerate(quests):
         print_text("\t" + str(index + 1) + ") " +

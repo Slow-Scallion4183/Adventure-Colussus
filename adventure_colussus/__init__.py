@@ -25,7 +25,7 @@ def get_input(string: str, valid_options: list) -> str:
             return user_input
 
 
-def session_counter(filename="adventure_colussus_seesion_counter.dat"):
+def session_counter(filename="adventure_colussus_session_counter.dat"):
     """
     Determines the version of the last played game, either in the {VERSION_FILENAME}
     file, or generating a new file if none is found.
@@ -235,14 +235,14 @@ def main_menu(CLEAR_SCREEN='clear'):
     This is where everything to do with the main game is. This includes all functions in one
     way or another. 
     """
-    
+    __version__ = 0.1 
     time.sleep(0.5)
     system(CLEAR_SCREEN)
     time.sleep(0.5)
-    show_date_and_time = datetime.datetime.now()
+    show_date_and_time = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
     screen_line()
-    print('\n  <Adventure Colossus>         session:', session_count,
-          '| current date: ', show_date_and_time, '| date of creation: 9.2.2021')
+    print('\n  <Adventure Colossus>     session:', session_count, '| version:', __version__,
+          '| current date:', show_date_and_time, '| date of creation: 9.2.2021')
     screen_line()
     time.sleep(0.5)
     mountain_range()
