@@ -55,9 +55,11 @@ def print_text(text: str, sleep_time: float = 0.0) -> None:
 
 
 def print_block(lines: dict) -> None:
-    """ takes dictionary where
-    keys: string to print
-    values: float wait time"""
+    """ 
+    Takes dictionary where - 
+    keys = string to print
+    values = float wait time
+    """
     for key in lines.keys():
         print_text(key, lines[key])
 
@@ -94,7 +96,7 @@ def character_generator():
     """
     character_style_menu = {
         "\n > We have reached the first crucial part of your journey: We must choose the path that you will take! The decision\n": 0.5,
-        " > is up to you my friend! Whether you choose to be a bloodthirsty warrior or a cunning and strategic fighter,\n" : 0.8,
+        " > is up to you my friend! Whether you choose to be a bloodthirsty warrior or a cunning and strategic fighter,\n": 0.8,
         " > the choice is up to you!\n": 0.5,
         "\n > Now then, lets get right into it!": 0.8,
         " Are you more of a tanky player[1] or a strategic player[2]?": 0.0
@@ -132,13 +134,14 @@ def character_generator():
         " > Now, we must see what luck we are able to bestow upon you. Be warned: it is entirely random!\n": 0.8
     }
     print_block(luck_menu)
-    input('\n > Press enter to roll a dice...')
+    print_text('\n > Press enter to roll a dice...')
+    input()
     time.sleep(0.3)
     print_text(' > Rolling dice...\n')
     luck = random.randint(0, 10)
     time.sleep(1)
     print_text(f' > Your hero has {luck} luck out of 10!\n', 0.8)
-    
+
     name_menu = {
         "\n > At last! We have reached the most important part of creating your character! The naming!\n": 0.0,
         " > Choose wisely my friend. Your hero will be named this for the rest of their lives...\n": 1,
@@ -188,7 +191,7 @@ def character_generator():
     character_file_name = input('> ')
     # Save the file
     character.save(f"./{character_file_name}.dat")
-    
+
     return (character, character_file_name)
 
 
@@ -227,24 +230,25 @@ def character_selection_horse_and_knight():
 def screen_line():
     print(' _____________________________________________________________________________________________________________________')
 
-"""
-I don't know what this is but it's causing a syntax error.
-== == == =
-"""
 
 def main_menu(CLEAR_SCREEN='clear'):
     """
     This is where everything to do with the main game is. This includes all functions in one
     way or another. 
     """
-    __version__ = 0.1 
+    __version__ = 0.1
     time.sleep(0.5)
     system(CLEAR_SCREEN)
     time.sleep(0.5)
     show_date_and_time = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
     screen_line()
-    print('\n  <Adventure Colossus>     session:', session_count, '| version:', __version__,
-          '| current date:', show_date_and_time, '| date of creation: 9.2.2021')
+    # print('\n  <Adventure Colossus>     session:', session_count, '| version:', __version__,
+          # '| current date:', show_date_and_time, '| date of creation: 9.2.2021')
+
+    title1 = "\n  <Adventure Colossus>"
+    a = len(title1)
+    title2 = f"session: {session_count} | current date: {show_date_and_time} | date of creation: 9.2.2021 | version: {__version__} "
+    print(title1 + title2.rjust(118-a," "))
     screen_line()
     time.sleep(0.5)
     mountain_range()
@@ -259,12 +263,17 @@ def main_menu(CLEAR_SCREEN='clear'):
     choice = get_input("\n > ", ['1', '2', '3', '4'])
     return choice
 
+
 def new_character(CLEAR_SCREEN='clear'):
     print_text(
         "\n > You have chosen to create a new game: Redirecting...", 0.75)
     system(CLEAR_SCREEN)
     screen_line()
-    print('  \n  We will begin with creating your character:                                        Quick tip: Choose wisely')
+    # print('  \n  We will begin with creating your character:                                        Quick tip: Choose wisely')
+    line1 = '  \n  We will begin with creating your character:'
+    linelen = len(line1)
+    line2 = 'Quick tip: Choose wisely\n'
+    print_text(line1 + line2.rjust(118-linelen, " "))
     screen_line()
     time.sleep(0.5)
     character_selection_horse_and_knight()
@@ -272,14 +281,18 @@ def new_character(CLEAR_SCREEN='clear'):
     time.sleep(0.3)
     return character_generator()
 
-    # elif choice == '2':
+
 def load_character(CLEAR_SCREEN='clear'):
     print_text(
         "\n > You have chosen to load an existing game: Redirecting...", 0.75)
     system(CLEAR_SCREEN)
     time.sleep(0.5)
     screen_line()
-    print('  \n  We will begin with choosing an existing character:                             Quick tip: Make sure it exists!')
+    # print('  \n  We will begin with choosing an existing character:                             Quick tip: Make sure it exists!')
+    line1 = '  \n  We will begin with choosiNg an existing character:'
+    linelen = len(line1)
+    line2 = 'Quick tip: Make sure it exists!\n'
+    print_text(line1 + line2.rjust(118-linelen, " "))
     screen_line()
     time.sleep(0.5)
     character_selection_horse_and_knight()
@@ -290,18 +303,6 @@ def load_character(CLEAR_SCREEN='clear'):
     print(character.__repr__())
     return (character, character_file_name)
 
-    # elif choice == '3':
-    #     print_text(' > Ending session...', 0.5)
-    #     print_text(' > Session ended successfully \n', 1)
-    #     sys.exit()
-
-    # elif choice == '4':
-    #     pass
-
-    # else:
-    #     print_text('Invalid response. Please try again')
-
 
 if __name__ == '__main__':
     pass
-    
