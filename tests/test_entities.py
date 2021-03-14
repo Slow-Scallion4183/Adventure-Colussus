@@ -2,7 +2,6 @@ import adventure_colussus.entities as ents
 import pytest
 from random import randint, seed
 
-
 """
 Item Tests: I'm not sure how necessary these are, but I need to practice
 testing and having 100% coverage is never a bad idea, so here they are.
@@ -88,12 +87,12 @@ class Test_Entity_str():
 class Test_Entity_repr():
 
     def test_Entity_repr(self, sample_Entity):
-        assert sample_Entity.__repr__() == "<Entity hp=0 lvl=1>"
+        assert sample_Entity.__repr__() == "<Entity Entity hp=0 lvl=1>"
 
     def test_Entity_repr_new_stats(self, sample_Entity):
         sample_Entity.current_health = 100
         sample_Entity.level = 100
-        assert sample_Entity.__repr__() == "<Entity hp=100 lvl=100>"
+        assert sample_Entity.__repr__() == "<Entity Entity hp=100 lvl=100>"
 
 
 class Test_Entity_Calculate_Luck():
@@ -112,7 +111,27 @@ class Test_Entity_XP():
         pass
 
 
+class Test_Entity_add_health():
+
+    def test_add_health(self, sample_Entity):
+        sample_Entity.add_health(10)
+        assert sample_Entity.current_health == 0
+
+
+""" 
+Human tests 
+"""
+
+
 class Test_Human_Combat():
+
+    def test_default_weapons_hands(self, sample_Attacker):
+        assert sample_Attacker.weapons[0].name == "Hands"
+        assert sample_Attacker.weapons[0].damage == 10
+
+    def test_default_weapons_sword(self, sample_Attacker):
+        assert sample_Attacker.weapons[1].name == "Sword"
+        assert sample_Attacker.weapons[1].damage == 25
 
     def test_attack(self, sample_Attacker, sample_Defender):
         assert sample_Attacker.attack(0, sample_Defender) == 490
@@ -122,6 +141,24 @@ class Test_Human_Combat():
 
     def test_deal_damage(self, sample_Defender):
         assert sample_Defender.current_health == 480
+
+    def test_attack_dialogue(self, sample_Attacker, sample_Defender):
+        sample_Defender.current_health = 5
+        result = sample_Attacker.attack(0, sample_Defender)
+        assert result == f"{sample_Defender.__str__()} has died."
+
+
+class Test_Brawler():
+    pass
+
+
+class Test_Ranger():
+    pass
+
+
+class Test_Zombie():
+    pass
+
 
 # spacer
 
