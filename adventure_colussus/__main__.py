@@ -16,9 +16,9 @@ def main():
     choice = main_menu(CLEAR_SCREEN)
 
     if choice == '1':
-        new_character(CLEAR_SCREEN)
+        character, character_file_name = new_character(CLEAR_SCREEN)
     elif choice == '2':
-        load_character(CLEAR_SCREEN)
+        character, character_file_name = load_character(CLEAR_SCREEN)
     elif choice == '3':
         print_text(' > Ending session...', 0.5)
         print_text(' > Session ended successfully \n', 1)
@@ -29,9 +29,14 @@ def main():
     else:
         print_text('Invalid response. Please try again')
 
+    print_text(f"{character.name},\n", 0.5)
 
     quest = jh.load_quest()
-    print(quest)
+    jh.print_question(quest["one"], quest)
+    print_text("Congratulations on completing your quest, now rest in the Hall of Heroes.\n", 0.5)
+    character.save(f"./{character_file_name}.dat")
+    print("SUCESS! EXITING")
+
 
     # if choice == '1':
         # print_text(

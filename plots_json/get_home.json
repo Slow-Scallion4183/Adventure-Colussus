@@ -1,6 +1,6 @@
 {
 	"one": {
-		"ask": "You awaken on a road, behind you is a building you can't make out. What would you like to do?",
+		"ask": "f\"{character.name}, you awaken on a road, behind you is a building you can't make out. What would you like to do?\"",
 		"options": [
 			"Move to the building",
 			"Continue on the road"

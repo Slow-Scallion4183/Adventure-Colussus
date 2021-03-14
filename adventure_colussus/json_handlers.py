@@ -14,18 +14,20 @@ def load_quest():
     print_text("What quest would you like to endeavor today?" + "\n")
     # print("What quest would you like to endeavor today?" + "\n")
     filenames = []
+    options = []
     for index, option in enumerate(quests):
         print_text("\t" + str(index + 1) + ") " +
                       quests[option]["name"] + " | " + quests[option]["description"] + "\n")
         # print("\t" + str(index + 1) + ") " +
         #   quests[option]["name"] + " | " + quests[option]["description"] + "\n")
+        options.append(quests[option]["name"])
         filenames.append(quests[option]["filename"])
     responses = [str(i) for i in range(1, len(quests) + 1)]
     answer = get_input(">", responses)
     quest_file = filenames[int(answer)-1]
     with open(quest_file) as qf:
         quest = json.load(qf)
-    # print_question(quest["one"], quest)
+    print_text(f"You have chosen {options[int(answer)-1]}.\n")
     return quest
 
 

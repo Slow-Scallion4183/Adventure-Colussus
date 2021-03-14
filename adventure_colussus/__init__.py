@@ -188,6 +188,8 @@ def character_generator():
     character_file_name = input('> ')
     # Save the file
     character.save(f"./{character_file_name}.dat")
+    
+    return (character, character_file_name)
 
 
 # ascii art
@@ -286,7 +288,7 @@ def load_character(CLEAR_SCREEN='clear'):
     # The new character load
     character = entities.Human.load(f"./{character_file_name}.dat")
     print(character.__repr__())
-    return character
+    return (character, character_file_name)
 
     # elif choice == '3':
     #     print_text(' > Ending session...', 0.5)
