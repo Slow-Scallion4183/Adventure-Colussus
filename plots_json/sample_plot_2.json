@@ -1,0 +1,13 @@
+{
+    "one": {
+        "ask": "This is a sample question",
+        "options": [
+            "This is a sample response a",
+            "This is a sample response b"
+        ],
+        "next": {
+            "This is a sample response a": "Null",
+            "This is a sample response b": "Null"
+        }
+    }
+}

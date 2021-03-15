@@ -1,0 +1,12 @@
+{
+    "quest1": {
+        "name": "Get in a Building, a demo",
+        "filename": "./plots_json/get_home.json",
+        "description": "This is a very basic attempt to try and mock up how plots might work. I've never used json in this manner and I'm not sure this is how it was intended when recommended, but let's see what works"
+    },
+    "quest2": {
+        "name": "Sample Plot 2",
+        "filename": "./plots_json/sample_plot_2.json",
+        "description": "This is a sample description. In this quest you will encounter all things. Woot."
+    }
+}
