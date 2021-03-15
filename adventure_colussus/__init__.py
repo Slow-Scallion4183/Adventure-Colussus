@@ -185,7 +185,7 @@ def character_generator():
     elif player_t_choice_1 == "2":
         character = entities.Ranger(**(dict(character) | character_dict))
     else:
-        character = entities.Brawler(**(dict(character) | character_dict))
+        character = entities.Human(**(dict(character) | character_dict))
 
     # Ask for the file name
     character_file_name = input('> ')
