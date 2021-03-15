@@ -5,6 +5,7 @@ from random import seed
 
 seed(20)
 
+collect_ignore = ["mechanics_test.py", "utils.py"]
 
 @pytest.fixture(scope="class")
 def sample_Item():

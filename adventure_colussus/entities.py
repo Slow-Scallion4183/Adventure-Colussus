@@ -15,6 +15,7 @@ from random import randint, choice
 # JSON for saving entities
 import json
 
+
 class Item(pydantic.BaseModel):
     """
         This represents an item in an inventory.
@@ -35,6 +36,7 @@ class Weapon(pydantic.BaseModel):
     # The weapon damage
     damage: int = 0
 
+
 class Entity(pydantic.BaseModel):
     """
         This is the base class for all entities.
@@ -47,12 +49,12 @@ class Entity(pydantic.BaseModel):
     # Entities have a default minimum and maximum health
     # Starting values.
     # NOTE These are default values. Subclasses will define their own values
-    min_health: int = 220 # Minimum 220 starting value
-    max_health: int = 500 # Maximum of 500
+    min_health: int = 220  # Minimum 220 starting value
+    max_health: int = 500  # Maximum of 500
 
     # NOTE Maybe replace these with a strength system?
-    min_damage: int = 10 # Minimum of 10
-    max_damage: int = 75 # Maximum of 75
+    min_damage: int = 10  # Minimum of 10
+    max_damage: int = 75  # Maximum of 75
 
     # This is a multiplier used when generating health
     health_mult_1: int = 1
@@ -64,8 +66,6 @@ class Entity(pydantic.BaseModel):
     # The current health of the entity defaults to zero.
     current_health: int = 0
 
-    
-
     # Luck defaults to zero. Generate at character initialization time.
     luck: int = 0
 
@@ -74,7 +74,7 @@ class Entity(pydantic.BaseModel):
 
     # NOTE Renaming loot to inventory. Keeps consistency with most other games
     #   Loot should be specific to things like rooms, chests, etc.
-    inventory: Dict[Item,int] = dict()
+    inventory: Dict[Item, int] = dict()
 
     # Weapons is now just a list of weapon classes
     weapons: List[Weapon] = [[]]
@@ -98,7 +98,7 @@ class Entity(pydantic.BaseModel):
 
     # Sheild
     shield: int = 0
-    
+
     # Magic
     magic: int = 0
 
@@ -112,14 +112,13 @@ class Entity(pydantic.BaseModel):
             This returns the entity name
         """
         return f'{f"The {self.word} " if self.word.strip() != "" else ""}{self.name if self.name.strip() != "" else self.__class__.__name__}'
-    
+
     def __repr__(self):
         """
             Returns a representation of the entity
         """
-        # return f"<{self.__name__} {self.name} hp={self.current_health} lvl={self.level}>"
-        return f"<{self.name} hp={self.current_health} lvl={self.level}>"
-    
+        return f"<{self.__class__.__name__} {self.name} hp={self.current_health} lvl={self.level}>"
+
     def calculate_luck(self, value):
         """
             This function auguments the provided value by the entity's luck
@@ -130,7 +129,7 @@ class Entity(pydantic.BaseModel):
         value += percent
 
         return value
-    
+
     def add_xp(self):
         """
             Add xp and level up accordingly. If it has leveled up, add health to total_health
@@ -189,29 +188,30 @@ class Entity(pydantic.BaseModel):
             self.current_health+ammount,
             self.total_health
         )
-    
+
     def give(self, item: Item, count: int):
         """
             NOTE I assume this is to give items to the entity
             This should add an item to the inventory, I assume
         """
         pass
-    
+
     def save(self, file):
         """
             Saves the entity to the selected file
         """
         with open(file, "w+") as f:
-            json.dump(self.dict(),f)
-    
+            json.dump(self.dict(), f)
+
     @classmethod
     def load(cls, file):
         """
             Loads a Entity from a file
         """
-        with open(file,"r") as f:
+        with open(file, "r") as f:
             j = json.load(f)
             return cls(**j)
+
     @classmethod
     def generate(cls, name=''):
         """
@@ -240,7 +240,7 @@ class Entity(pydantic.BaseModel):
 
         # Set our describing word
         self.word = choice(self.word_choice)
-        
+
         # Inventory should be empty
         self.inventory = dict()
 
@@ -251,17 +251,16 @@ class Entity(pydantic.BaseModel):
         return self
 
 
-
-    
 class Human(Entity):
     """
         A basic human class. All humans are based off of this.
     """
-    # NOTE Entity is already modeled around a human 
+    # NOTE Entity is already modeled around a human
     #   No need to change much
     default_weapons: List[List[Weapon]] = [[
         Weapon(name="Hands", damage=10),
     ]]
+
 
 class Brawler(Human):
     """
@@ -270,7 +269,7 @@ class Brawler(Human):
     default_weapons: List[List[Weapon]] = [[
         Weapon(name="Sword", damage=35),
         Weapon(name="Hands", damage=20),
-        Weapon(name="Bow", damage = 15)
+        Weapon(name="Bow", damage=15)
     ]]
 
     word_choice: List[str] = [
@@ -283,6 +282,7 @@ class Brawler(Human):
     health_mult_1: int = 0.2
     health_mult_2: int = 0.4
 
+
 class Ranger(Human):
     """
         Ranger human subclass
@@ -291,7 +291,7 @@ class Ranger(Human):
     default_weapons: List[List[Weapon]] = [[
         Weapon(name="Sword", damage=15),
         Weapon(name="Hands", damage=10),
-        Weapon(name="Bow", damage = 35)
+        Weapon(name="Bow", damage=35)
     ]]
 
     word_choice: List[str] = [
@@ -303,9 +303,10 @@ class Ranger(Human):
 
     health_mult_1: int = 0.2
     health_mult_2: int = 0.3
-    
+
     def __str__(self):
         return f'{self.name} the {self.word}'
+
 
 class Zombie(Human):
     """
@@ -318,6 +319,7 @@ class Zombie(Human):
 
     health_mult_1: int = 0.5
     health_mult_2: int = 0.6
+
 
 class Survivor():
     """
