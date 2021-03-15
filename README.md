@@ -11,3 +11,6 @@ IMPORTANT INFO:
 
 The development branch is where the most changes to the game will happen. Once we have reached an important milestones it will be compared and then merged with the master branch.
 
+## Note
+
+This is a development fork. The main branch of this repo tracks the dev branch of [Slow-Scallion4183's](https://github.com/Slow-Scallion4183/Adventure-Colussus) original release. For current approved release please visit that repo.
