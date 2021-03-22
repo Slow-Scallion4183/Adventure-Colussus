@@ -187,7 +187,7 @@ class Test_Brawler_repr():
     def test_Brawler_repr_new_stats(self, sample_Brawler):
         # sample_Brawler.current_health = 100
         sample_Brawler.level = 100
-        assert sample_Brawler.__repr__() == "<Brawler Tes_Brawler hp=100 lvl=100>"
+        assert sample_Brawler.__repr__() == "<Brawler Test_Brawler hp=154 lvl=100>"
 
 
 class Test_Brawler_Calculate_Luck():
