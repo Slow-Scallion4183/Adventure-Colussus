@@ -42,6 +42,46 @@ def session_counter(filename="adventure_colussus_session_counter.dat"):
 session_count = session_counter()
 
 
+def char_split(string:str="", number:int = 118) -> str:
+    """
+    Returns a string formatted for printing based on window width.
+    """
+    # Don't check lines less than screen width
+    if len(string) < number:
+        return string
+    res = []
+    keep_going = True
+    safe_endings = [" ", ".", ",", "?", "-", "!", "\n"]
+    while keep_going:
+        # strip preceding spaces so new lines start on real char.
+        # string = string.lstrip()
+        chunk = string[:number]
+        if not chunk:
+            keep_going = False
+        elif chunk[-1] in safe_endings:
+            res.append(chunk)
+            string = string[number:]
+        # if last char is first letter of word don't hypen, replace
+        # with a space and move full word to new line
+        elif chunk[-2].isspace():
+            res.append(chunk[:-2])
+            string = string[number-1:]
+        # else line ends in middle of word and should get hyphen
+        else:
+            res.append(string[:number-1] + "-")
+            string = string[number-1:]
+    return "\n".join(res)
+
+
+def mod_input(some_func):
+
+    def wrapped_func(text="", *args, **kwargs):
+        text = char_split(text, 121)
+        some_func(text, *args, **kwargs)
+    return wrapped_func
+
+    
+@mod_input
 def print_text(text: str, sleep_time: float = 0.0) -> None:
     """
     Prints the text to the console character by character. RPG style.
@@ -54,14 +94,15 @@ def print_text(text: str, sleep_time: float = 0.0) -> None:
         time.sleep(sleep_time)
 
 
-def print_block(lines: dict) -> None:
+@mod_input
+def print_block(text: dict) -> None:
     """ 
     Takes dictionary where - 
     keys = string to print
     values = float wait time
     """
-    for key in lines.keys():
-        print_text(key, lines[key])
+    for key in text.keys():
+        print_text(key, text[key])
 
 
 def save_character(save_name: str, character: Dict[str, Any]) -> None:

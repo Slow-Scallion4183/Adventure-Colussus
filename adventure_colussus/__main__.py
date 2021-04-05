@@ -47,7 +47,7 @@ def main():
     print_text(
         "Congratulations on completing your quest, now rest in the Hall of Heroes.\n", 0.5)
     character.save(f"./{character_file_name}.dat")
-    print_text("SUCESS! EXITING", 1)
+    print_text("SUCCESS! EXITING", 1)
 
 
 if __name__ == '__main__':
