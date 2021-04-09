@@ -54,13 +54,13 @@ def sample_Brawler():
 
 @pytest.fixture(scope="class")
 def sample_Ranger():
-    '''Melee specialist character class'''
+    '''Distance specialist character class'''
     ranger = ents.Ranger.generate("Test_Ranger")
     return ranger
 
 @pytest.fixture(scope="class")
 def sample_Zombie():
-    '''Melee specialist character class'''
+    '''Main enemy'''
     zombie = ents.Zombie.generate("Test_Zombie")
     return zombie
 
