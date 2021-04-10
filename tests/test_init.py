@@ -2,29 +2,32 @@ import adventure_colussus.utils as ac
 import adventure_colussus.entities as entities
 import pytest
 from random import randint, seed
-import mock
+from mock import patch
 import builtins
 import sys
+from .helpers import get_display_output, set_keyboard_input
+# import mock
+from unittest.mock import mock_open
+
+
+def test_get_input_new():
+    set_keyboard_input(["1"])
+    assert ac.get_input("Pick", ["1","2"]) == "1"
+
+
+def test_get_input_new_false():
+    set_keyboard_input(["1"])
+    assert ac.get_input("Pick", ["1","2"]) != "2"
+
 
 def test_get_input():
-    with mock.patch.object(builtins, 'input', lambda _: '1'):
+    with patch.object(builtins, 'input', lambda _: '1'):
         assert ac.get_input("Pick", ["1","2"]) == '1'
+
         
 def test_get_input_false():
-    with mock.patch.object(builtins, 'input', lambda _: '1'):
+    with patch.object(builtins, 'input', lambda _: '1'):
         assert ac.get_input("Pick", ["1","2"]) != '2'
-
-def test_load_character():
-    with mock.patch.object(builtins, 'input', lambda _: 'tgimli'):
-        assert type(ac.load_character('clear')[0]) == entities.Human
-
-# def test_luck():
-#     with mock.patch.object(builtins, 'input', lambda _: ''):
-#         assert ac.luck_menu() == 100 
-
-# def test_character_style_menu():
-#     with mock.patch.object(ac.get_input, 'user_input', lambda _: '1'):
-#         assert ac.get_input("Pick", ["1","2"]) != '2'
 
 
 def test_print_text(capsys):
@@ -33,8 +36,33 @@ def test_print_text(capsys):
     sys.stdout.write(out)
     assert out == "Test text"
 
-'''
+
+def test_luck():
+    def mock_input(s):
+        input_values = ["1"]
+        return input_values.pop(0)
+    ac.input = mock_input
+    response = ac.get_input("Pick", ["1","2"])
+    assert response == "1"
+
+# def test_character_style_menu():
+#     with mock.patch.object(ac.get_input, 'user_input', lambda _: '1'):
+#         assert ac.get_input("Pick", ["1","2"]) != '2'
+
 # why does this take so long to run??
+
+# def test_load_character():
+#     with patch.object(builtins, 'input', lambda _: 'tgimli'):
+        # assert type(ac.load_character('clear')[0]) == entities.Human
+
+def test_load_character_other():
+    def mock_input(s):
+        input_values = ['tgimli']
+        return input_values.pop(0)
+    ac.input = mock_input
+    assert type(ac.load_character('clear')[0]) == entities.Human
+
+'''
 def test_print_block(capsys):
     luck_text = {
         "\n > Good good! We have decided your play style and your preferred ways of attacking the enemy!\n": 0,
@@ -45,8 +73,8 @@ def test_print_block(capsys):
     sys.stdout.write(out)
     # assert out == "\n > Good good! We have decided your play style and your preferred ways of attacking the enemy!\n > Now, we must see what luck we are able to bestow upon you. Be warned: it is entirely random!\n"
     assert out.startswith("\n > Good good")
-'''
 
+'''
 def test_session_counter():
     # tmp_path fixture?
     pass
@@ -62,16 +90,3 @@ def test_session_counter():
 
 
 #spacer
-
-from unittest.mock import patch, mock_open
-
-"""
-
-def test_do_stuff_with_file():
-    open_mock = mock_open()
-    with patch("adventure_colossus.utils.open", open_mock, create=True):
-        ac.session_counter("This is the session counter")
-
-    open_mock.assert_called_with("output.txt", "w")
-    open_mock.return_value.write.assert_called_once_with("This is the session counter")
-"""
