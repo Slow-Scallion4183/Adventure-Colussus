@@ -1,4 +1,5 @@
 import adventure_colussus.utils as ac
+import adventure_colussus.entities as entities
 import pytest
 from random import randint, seed
 import mock
@@ -13,9 +14,13 @@ def test_get_input_false():
     with mock.patch.object(builtins, 'input', lambda _: '1'):
         assert ac.get_input("Pick", ["1","2"]) != '2'
 
-def test_luck():
-    with mock.patch.object(builtins, 'input', lambda _: ''):
-        assert ac.luck_menu() == 100 
+def test_load_character():
+    with mock.patch.object(builtins, 'input', lambda _: 'tgimli'):
+        assert type(ac.load_character('clear')[0]) == entities.Human
+
+# def test_luck():
+#     with mock.patch.object(builtins, 'input', lambda _: ''):
+#         assert ac.luck_menu() == 100 
 
 # def test_character_style_menu():
 #     with mock.patch.object(ac.get_input, 'user_input', lambda _: '1'):
