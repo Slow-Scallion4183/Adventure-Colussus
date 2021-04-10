@@ -6,8 +6,6 @@ import sys
 from unittest.mock import mock_open
 import adventure_colussus as ac
 
-ac.print_text("Print This", 0.5)
-
 
 def test_load_character():
     with patch.object(builtins, 'input', lambda _: 'tgimli'):

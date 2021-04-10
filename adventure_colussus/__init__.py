@@ -54,11 +54,17 @@ def debug_print(func):
     Overwrites fancy print with fast print for speedier debugging.
     """
     def wrapper(*args, **kwargs):
+        value = False
         try:
             if sys.argv[1] in {"-d", "--debug"}:
-                value = print(args[0], end="")
-        except IndexError:
-            value = func(*args, **kwargs)
+            # if config_param['debug'] == True:
+                print(args[0], end="")
+                value = 1
+        except:
+            pass
+        finally:
+            if not value:
+                return func(*args, **kwargs)
         return value 
     return wrapper
 

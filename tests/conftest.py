@@ -2,10 +2,19 @@ import pytest
 import adventure_colussus.entities as ents
 from random import seed
 
+def pytest_addoption(parser):
+    print('conftest method')
+    parser.addoption("--mydebug", action = "store_true", help ="change print function")
+
+@pytest.fixture
+def get_param(request):
+    config_param = {}
+    config_param["debug"] = request.config.getoption("--mydebug")
+    return config_param
 
 seed(20)
 
-collect_ignore = ["setup.py", "mechanics_test.py", "utils.py"]
+collect_ignore = ["setup.py", "tox.ini", "pytest.ini", "tests/",]
 
 
 @pytest.fixture(scope="class")
