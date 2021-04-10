@@ -1,23 +1,17 @@
-import adventure_colussus.utils as ac
-import adventure_colussus.entities as entities
 import pytest
 from random import randint, seed
 from mock import patch
 import builtins
 import sys
-# from .helpers import get_display_output, set_keyboard_input
-# import mock
 from unittest.mock import mock_open
+import adventure_colussus as ac
+
+ac.print_text("Print This", 0.5)
 
 
-# def test_get_input_new():
-#     set_keyboard_input(["1"])
-#     assert ac.get_input("Pick", ["1","2"]) == "1"
-
-
-# def test_get_input_new_false():
-#     set_keyboard_input(["1"])
-    # assert ac.get_input("Pick", ["1","2"]) != "2"
+def test_load_character():
+    with patch.object(builtins, 'input', lambda _: 'tgimli'):
+        assert type(ac.load_character('clear')[0]) == ac.entities.Human
 
 
 def test_get_input():
@@ -51,17 +45,14 @@ def test_luck():
 
 # why does this take so long to run??
 
-# def test_load_character():
-#     with patch.object(builtins, 'input', lambda _: 'tgimli'):
-        # assert type(ac.load_character('clear')[0]) == entities.Human
-
+'''
 def test_load_character_other():
     def mock_input(s):
         input_values = ['tgimli']
         return input_values.pop(0)
     ac.input = mock_input
-    assert type(ac.load_character('clear')[0]) == entities.Human
-
+    assert type(ac.load_character('clear')[0]) == ac.entities.Human
+'''
 '''
 def test_print_block(capsys):
     luck_text = {
