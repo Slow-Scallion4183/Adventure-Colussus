@@ -2,7 +2,7 @@ from adventure_colussus import *
 import time
 import random
 import adventure_colussus.json_handlers as jh
-from sys import exit
+from sys import exit, argv
 
 CLEAR_SCREEN = 'clear'
 if platform.system() == 'Windows':

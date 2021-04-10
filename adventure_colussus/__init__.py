@@ -12,7 +12,6 @@ from random import randint, choice
 
 import adventure_colussus.entities as entities
 
-
 # functions
 
 def get_input(string: str = "", valid_options: list = []) -> str:
@@ -50,10 +49,23 @@ def session_counter(filename: str ="adventure_colussus_session_counter.dat") -> 
 
 session_count = session_counter()
 
+def debug_print(func):
+    """
+    Overwrites fancy print with fast print for speedier debugging.
+    """
+    def wrapper(*args, **kwargs):
+        try:
+            if sys.argv[1] in {"-d", "--debug"}:
+                value = print(args[0], end="")
+        except IndexError:
+            value = func(*args, **kwargs)
+        return value 
+    return wrapper
 
+@debug_print
 def print_text(text: str = "", sleep_time: float = 0.0) -> None:
     """
-    Prints the text to the console character by character. RPG style.
+    Prints the text to the console character by character, RPG style.
 
     Args:
         text (str, optional): Defaults to "".
