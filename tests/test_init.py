@@ -5,19 +5,19 @@ from random import randint, seed
 from mock import patch
 import builtins
 import sys
-from .helpers import get_display_output, set_keyboard_input
+# from .helpers import get_display_output, set_keyboard_input
 # import mock
 from unittest.mock import mock_open
 
 
-def test_get_input_new():
-    set_keyboard_input(["1"])
-    assert ac.get_input("Pick", ["1","2"]) == "1"
+# def test_get_input_new():
+#     set_keyboard_input(["1"])
+#     assert ac.get_input("Pick", ["1","2"]) == "1"
 
 
-def test_get_input_new_false():
-    set_keyboard_input(["1"])
-    assert ac.get_input("Pick", ["1","2"]) != "2"
+# def test_get_input_new_false():
+#     set_keyboard_input(["1"])
+    # assert ac.get_input("Pick", ["1","2"]) != "2"
 
 
 def test_get_input():
