@@ -9,7 +9,7 @@ import os
 from os import system, name
 from typing import Dict, Any
 from random import randint, choice
-
+from functools import wraps
 
 import adventure_colussus.entities as entities
 
@@ -54,15 +54,16 @@ def debug_print(func):
     """
     Overwrites fancy print with fast print for speedier debugging.
     """
+    @wraps(func)
     def wrapper(*args, **kwargs):
         value = False
         try:
             if sys.argv[1] in {"-d", "--debug"}: 
-                #ensure value != None, 0, False, falsey
+                # ensure value != None, 0, False, falsey
                 value = print(args[0], end="") or 1
         except:
             if os.environ.get('DEBUG_TESTS') == 'True':
-                #ensure value != None, 0, False, falsey
+                # ensure value != None, 0, False, falsey
                 value = print(args[0], end="") or 1
         finally:
             if not value:

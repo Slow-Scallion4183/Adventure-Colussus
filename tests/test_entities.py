@@ -375,3 +375,11 @@ class Test_Zombie_Combat():
         sample_Defender.current_health = 5
         result = sample_Zombie.attack(0, sample_Defender)
         assert result == f"{sample_Defender.__str__()} has died."
+
+class Test_Survivor():
+
+    def test_Survivor_generate(self, sample_Survivor):
+        assert type(sample_Survivor) == ents.Survivor
+
+    def test_Survivor_name(self, sample_Survivor):
+        assert sample_Survivor.name == "Test_Survivor"

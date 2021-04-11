@@ -50,19 +50,25 @@ def sample_Defender():
 def sample_Brawler():
     '''Melee specialist character class'''
     brawler = ents.Brawler.generate("Test_Brawler")
-    return brawler
+    yield brawler
 
 @pytest.fixture(scope="class")
 def sample_Ranger():
     '''Distance specialist character class'''
     ranger = ents.Ranger.generate("Test_Ranger")
-    return ranger
+    yield ranger
 
 @pytest.fixture(scope="class")
 def sample_Zombie():
     '''Main enemy'''
     zombie = ents.Zombie.generate("Test_Zombie")
-    return zombie
+    yield zombie
+
+@pytest.fixture(scope="class")
+def sample_Survivor():
+    '''Neutral? NPC'''
+    survivor = ents.Survivor.generate("Test_Survivor")
+    yield survivor
 
 '''
 @ TODO

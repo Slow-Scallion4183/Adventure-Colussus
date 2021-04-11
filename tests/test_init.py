@@ -5,28 +5,45 @@ import builtins
 import sys
 from unittest.mock import mock_open
 import adventure_colussus as ac
-from functools import wraps
+from functools import wraps, partial
 
 seed(20)
 
-def mock_input_dec(options):
+
+# def mock_input_decorator(func=None, options=None):  # <--- !!
+#     if func == None:
+#         return partial(mock_input_decorator, options)
+
+#     @wraps(func)
+#     def wrapped(*args, **kwargs):
+#         opt = list(options)  # Fixes your other error perhaps?
+#         def wrapper(s="p"):
+#             return opt.pop()
+#         ac.input = wrapper
+#         return func(*args, **kwargs)
+#     return wrapped
+
+def mock_input_decorator(options):
     def outer(func):
+        opts = list(options)
         def middle(*args, **kwargs):
-            # input_values = ["1"]
             def wrapper(s="p"):
-                return options.pop()
+                return opts.pop()
+                # return options.pop()
             ac.input = wrapper
             return func(*args, **kwargs)
         return middle
     return outer
 
 
-@mock_input_dec(["1"])
+# @mock_input_decorator(["1"])
+@mock_input_decorator(options=["1"])
+# @mock_input_decorator
 def test_get_input():
     assert ac.get_input("Pick", ["1","2"]) == '1'       
 
 
-@mock_input_dec(["1"])
+@mock_input_decorator(["1"])
 def test_get_input_false():
     assert ac.get_input("Pick", ["1","2"]) != '2'
 
@@ -60,51 +77,51 @@ def test_print_block(capsys):
 
 
 # TODO Needs more
-@mock_input_dec(["1"])
+@mock_input_decorator(["1"])
 def test_character_style_menu_brawler():
     assert ac.character_style_menu() == ("Brawler", 100, 75)
 
 
-@mock_input_dec(["2"])
+@mock_input_decorator(["2"])
 def test_character_style_menu_ranger():
     assert ac.character_style_menu() == ("Ranger", 75, 50)
 
 
 # TODO
-# @mock_input_dec(["3"]
+# @mock_input_decorator(["3"])
 # def test_character_style_menu_ranger():
 #     assert ac.character_style_menu() == Error
 
 
 # TODO needs more
-@mock_input_dec(["2"])
+@mock_input_decorator(["2"])
 def test_attack_style_menu_brawler():
     assert ac.attack_style_menu() == (75,45)
 
 
-@mock_input_dec(["1"])
+@mock_input_decorator(["1"])
 def test_attack_style_menu_ranger():
     assert ac.attack_style_menu() == (50, 75)
 
 
 # TODO
-# @mock_input_dec(["3"]
+# @mock_input_decorator(["3"]
 # def test_character_style_menu_ranger():
 #     assert ac.character_style_menu() == Error    
+    
+@mock_input_decorator(["1"])
+def test_luck_dec():
+    response = ac.luck_menu()
+    assert response == 1
 
-# @mock_input_dec(["1"])
-# def test_luck_dec():
-#     response = ac.luck_menu()
-#     assert response == 2
 
-
-@mock_input_dec(["Aragorn"])
+@mock_input_decorator(["Aragorn"])
 def test_get_player_name():
     response = ac.get_player_name()
     assert response == "Aragorn"
     
 
-@mock_input_dec([" "])
+@mock_input_decorator([" "])
 def test_get_player_name_no_name():
     response = ac.get_player_name()
     assert response != "Aragorn"
@@ -118,17 +135,19 @@ def test_add_player_choices():
 def test_character_generator():
     pass
     
-
+    
 def test_main_menu():
     pass
+
 
 def test_new_character():
     pass
 
-# @mock_input_dec(["tgimli"])
-# def test_load_character():
-#     with patch.object(builtins, 'input', lambda _: 'tgimli'):
-#         assert type(ac.load_character('clear')[0]) == ac.entities.Human
+
+@mock_input_decorator(["tgimli"])
+def test_load_character():
+    with patch.object(builtins, 'input', lambda _: 'tgimli'):
+        assert type(ac.load_character('clear')[0]) == ac.entities.Human
 
 
 

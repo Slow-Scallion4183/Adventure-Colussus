@@ -321,7 +321,7 @@ class Zombie(Human):
     health_mult_2: int = 0.6
 
 
-class Survivor():
+class Survivor(Human):
     """
         Non combatant humans to trade with or other 
     """
