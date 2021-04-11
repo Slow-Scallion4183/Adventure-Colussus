@@ -5,7 +5,7 @@ from random import seed
 
 seed(20)
 
-collect_ignore = ["setup.py", "mechanics_test.py", "utils.py"]
+collect_ignore = ["setup.py", "tox.ini", "pytest.ini", "tests/",]
 
 
 @pytest.fixture(scope="class")
@@ -64,3 +64,8 @@ def sample_Zombie():
     zombie = ents.Zombie.generate("Test_Zombie")
     return zombie
 
+'''
+@ TODO
+# make test save file fixure for saving/loading
+# make test_session file for get_session_count
+'''

@@ -2,19 +2,18 @@ from adventure_colussus import *
 import time
 import random
 import adventure_colussus.json_handlers as jh
-
+from sys import exit, argv
 
 CLEAR_SCREEN = 'clear'
 if platform.system() == 'Windows':
     CLEAR_SCREEN = 'cls'
 
 
-def main():
+def main() -> None:
     """
     This is where everything to do with the main game is. This includes all functions in one
     way or another. 
     """
-
     # pick a character
     choice = main_menu(CLEAR_SCREEN)
 
@@ -47,8 +46,8 @@ def main():
     print_text(
         "Congratulations on completing your quest, now rest in the Hall of Heroes.\n", 0.5)
     character.save(f"./{character_file_name}.dat")
-    print_text("SUCESS! EXITING", 1)
+    print_text("SUCCESS! EXITING", 1)
 
 
 if __name__ == '__main__':
-    main()
+    exit(main())
