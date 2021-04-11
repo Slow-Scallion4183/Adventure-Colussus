@@ -305,7 +305,7 @@ class Ranger(Human):
     health_mult_2: int = 0.3
 
     def __str__(self):
-        return f'{self.name} the {self.word}'
+        return f'{self.name if self.name.strip() != "" else self.__class__.__name__}{f" the {self.word}" if self.word.strip() != "" else ""}'
 
 
 class Zombie(Human):
