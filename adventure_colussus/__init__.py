@@ -57,18 +57,13 @@ def debug_print(func):
     def wrapper(*args, **kwargs):
         value = False
         try:
-            # print(os.environ.get('DEBUG_TESTS'))
-            # print(os.environ.get('DEBUG_TESTS') == 'True')
             if sys.argv[1] in {"-d", "--debug"}: 
-            # if config_param['debug'] == True:
-                print(args[0], end="")
-                value = 1
+                #ensure value != None, 0, False, falsey
+                value = print(args[0], end="") or 1
         except:
             if os.environ.get('DEBUG_TESTS') == 'True':
-                print(args[0], end="")
-                value = 1
-            else:
-                pass
+                #ensure value != None, 0, False, falsey
+                value = print(args[0], end="") or 1
         finally:
             if not value:
                 return func(*args, **kwargs)
