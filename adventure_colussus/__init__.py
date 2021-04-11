@@ -4,6 +4,7 @@ import platform
 import random
 import time
 import sys
+import os
 
 from os import system, name
 from typing import Dict, Any
@@ -56,12 +57,18 @@ def debug_print(func):
     def wrapper(*args, **kwargs):
         value = False
         try:
-            if sys.argv[1] in {"-d", "--debug"}:
+            # print(os.environ.get('DEBUG_TESTS'))
+            # print(os.environ.get('DEBUG_TESTS') == 'True')
+            if sys.argv[1] in {"-d", "--debug"}: 
             # if config_param['debug'] == True:
                 print(args[0], end="")
                 value = 1
         except:
-            pass
+            if os.environ.get('DEBUG_TESTS') == 'True':
+                print(args[0], end="")
+                value = 1
+            else:
+                pass
         finally:
             if not value:
                 return func(*args, **kwargs)

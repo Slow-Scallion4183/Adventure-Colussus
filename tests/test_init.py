@@ -38,20 +38,17 @@ def test_luck():
     assert response == "1"
 
 # def test_character_style_menu():
-#     with mock.patch.object(ac.get_input, 'user_input', lambda _: '1'):
+#     with patch.object(ac.get_input, 'user_input', lambda _: '1'):
 #         assert ac.get_input("Pick", ["1","2"]) != '2'
 
 # why does this take so long to run??
 
-'''
 def test_load_character_other():
     def mock_input(s):
         input_values = ['tgimli']
         return input_values.pop(0)
     ac.input = mock_input
     assert type(ac.load_character('clear')[0]) == ac.entities.Human
-'''
-'''
 def test_print_block(capsys):
     luck_text = {
         "\n > Good good! We have decided your play style and your preferred ways of attacking the enemy!\n": 0,
@@ -63,7 +60,6 @@ def test_print_block(capsys):
     # assert out == "\n > Good good! We have decided your play style and your preferred ways of attacking the enemy!\n > Now, we must see what luck we are able to bestow upon you. Be warned: it is entirely random!\n"
     assert out.startswith("\n > Good good")
 
-'''
 def test_session_counter():
     # tmp_path fixture?
     pass
