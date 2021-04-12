@@ -134,7 +134,7 @@ class Entity(pydantic.BaseModel):
         """
             Add xp and level up accordingly. If it has leveled up, add health to total_health
         """
-        pass
+        return "Once implemented testing will fail."
 
     def attack(self, weapon: int, defender):
         """
@@ -194,7 +194,7 @@ class Entity(pydantic.BaseModel):
             NOTE I assume this is to give items to the entity
             This should add an item to the inventory, I assume
         """
-        pass
+        return "Once implemented testing will fail."
 
     def save(self, file):
         """

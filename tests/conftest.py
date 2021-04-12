@@ -1,7 +1,7 @@
 import pytest
 import adventure_colussus.entities as ents
 from random import seed
-
+import adventure_colussus as ac
 
 seed(20)
 
@@ -70,6 +70,27 @@ def sample_Survivor():
     survivor = ents.Survivor.generate("Test_Survivor")
     yield survivor
 
+@pytest.fixture(scope="module")
+def sample_Dict_Brawler():
+    character_dict = {'player_style':"Brawler", 'health': 100, 'damage': 50,
+                      'shield': 25, 'magic': 30, 'luck': 10, 'name': "dict_Brawler"}
+    person_traits = ac.add_player_choices(character_dict)
+    yield person_traits
+
+@pytest.fixture(scope="module")
+def sample_Dict_Ranger():
+    character_dict = {'player_style':"Ranger", 'health': 100, 'damage': 50,
+                      'shield': 25, 'magic': 30, 'luck': 10, 'name': "dict_Ranger"}
+    person_traits = ac.add_player_choices(character_dict)
+    yield person_traits
+
+@pytest.fixture(scope="module")
+def sample_Dict_Human():
+    character_dict = {'player_style':"Human", 'health': 100, 'damage': 50,
+                      'shield': 25, 'magic': 30, 'luck': 10, 'name': "dict_Human"}
+    person_traits = ac.add_player_choices(character_dict)
+    yield person_traits
+    
 '''
 @ TODO
 # make test save file fixure for saving/loading

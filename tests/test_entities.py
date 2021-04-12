@@ -1,6 +1,8 @@
 import adventure_colussus.entities as ents
 import pytest
 from random import randint, seed
+from mock import patch, MagicMock, mock_open
+import io
 
 """
 Item Tests: I'm not sure how necessary these are, but I need to practice
@@ -108,7 +110,8 @@ class Test_Entity_Calculate_Luck():
 class Test_Entity_XP():
 
     def test_add_xp(self, sample_Entity):
-        pass
+        response = sample_Entity.add_xp()
+        assert response == "Once implemented testing will fail."
 
 
 class Test_Entity_add_health():
@@ -116,6 +119,31 @@ class Test_Entity_add_health():
     def test_add_health(self, sample_Entity):
         sample_Entity.add_health(10)
         assert sample_Entity.current_health == 0
+
+
+class Test_Entity_give():
+    def test_give(self, sample_Entity):
+        # pass
+        response = sample_Entity.give('a', 2)
+        assert response == "Once implemented testing will fail."
+
+
+class Test_Entity_save():
+
+    def test_Entity_save_file(self, sample_Entity):
+        open_name = f'{__name__}.open'     
+        with patch(open_name, create=True) as mock_open:
+            mock_open.return_value = MagicMock(spec=io.IOBase)
+            with open('/some/path', 'w') as f:
+                f.write('something')
+        file_handle = mock_open.return_value.__enter__.return_value
+        # assert file_handle == 'something'
+        file_handle.write.assert_called_with('something')
+'''
+<mock.Mock object at 0x...>
+>>> file_handle = mock_open.return_value.__enter__.return_value
+>>> file_handle.write.assert_called_with('something')
+'''
 
 
 """ 
@@ -202,7 +230,8 @@ class Test_Brawler_Calculate_Luck():
 class Test_Brawler_XP():
 
     def test_add_xp(self, sample_Brawler):
-        pass
+        response = sample_Brawler.add_xp()
+        assert response == "Once implemented testing will fail."
 
 
 class Test_Brawler_add_health():
@@ -246,14 +275,6 @@ class Test_Brawler_Combat():
         assert result == f"{sample_Defender.__str__()} has died."
 
 
-class Test_Ranger():
-    pass
-
-
-class Test_Zombie():
-    pass
-
-
 class Test_Ranger_():
 
     def test_Ranger_generate(self, sample_Ranger):
@@ -288,6 +309,12 @@ class Test_Ranger_repr():
     def test_Ranger_repr_new_stats(self, sample_Ranger):
         sample_Ranger.level = 100
         assert sample_Ranger.__repr__() == "<Ranger Test_Ranger hp=136 lvl=100>"
+
+class Test_Ranger_XP():
+
+    def test_add_xp(self, sample_Ranger):
+        response = sample_Ranger.add_xp()
+        assert response == "Once implemented testing will fail."
 
 
 class Test_Ranger_Combat():
