@@ -7,6 +7,7 @@ import sys
 from unittest.mock import mock_open
 import adventure_colussus as ac
 from functools import wraps, partial
+from .test_utils import mock_input_decorator
 
 seed(20)
 
@@ -23,17 +24,6 @@ seed(20)
 #         ac.input = wrapper
 #         return func(*args, **kwargs)
 #     return wrapped
-
-def mock_input_decorator(options):
-    def outer(func):
-        opts = list(options)
-        def middle(*args, **kwargs):
-            def wrapper(s="p"):
-                return opts.pop()
-            ac.input = wrapper
-            return func(*args, **kwargs)
-        return middle
-    return outer
 
 
 @mock_input_decorator(options=["1"])
@@ -57,6 +47,7 @@ def test_debug_print():
         ac.print_text("This is a test string", 0.5)
         end = datetime.datetime.utcnow() - startime
         assert end.total_seconds() > 1
+
 def test_debug_print_d():
     testargs = "-d"
     with patch.object(sys, 'argv', testargs):
@@ -65,8 +56,17 @@ def test_debug_print_d():
         end = datetime.datetime.utcnow() - startime
         assert end.total_seconds() < 2
 
-# 
+# TODO test value assignment inside debug_print decorator
+def test_try_value():
+    pass
+    
+# TODO fix DRY in debug_print, then this test unnecessary
+def test_except_value():
+    pass
 
+# TODO test return of inner function wrapper to confirm assignment
+def test_return_value():
+    pass
 def test_print_text(capsys):
     ac.print_text("Test text")
     out, _ = capsys.readouterr()
@@ -122,7 +122,7 @@ def test_attack_style_menu_ranger():
 @mock_input_decorator(options=["1"])
 def test_luck_dec():
     response = ac.luck_menu()
-    assert response == 1
+    assert response == 10
 
 
 @mock_input_decorator(options=["Aragorn"])
@@ -145,16 +145,49 @@ def test_add_player_choices_Human(sample_Dict_Human):
     assert sample_Dict_Human.name == 'dict_Human'  
 
 
+# TODO need to test all steps of character_generator
 def test_character_generator():
     pass
+
+choices = ["tgimli", "Boromir", "1", "2", "1"]
+@mock_input_decorator(options=choices)
+def test_character_gen_2():
+    response = ac.character_generator()
+    # assert response == ("<Brawler Aragorn hp=500 lvl=1>", "tgimli.dat")
+    assert response[0].__repr__() == "<Brawler Boromir hp=500 lvl=1>"
+
     
+# TODO this should be covered by main menu
+def test_mountain_range():
+    response = ac.mountain_range()
+    assert response == None
     
+@mock_input_decorator(options=["1"])
 def test_main_menu():
-    pass
+    response = ac.main_menu("clear")
+    assert response == "1"
 
+'''
+@mock_input_decorator(options=["1"])
+def test_main_menu_print_block(capsys):
+    menu_text = {
+        "> [1] Create new game\n\
+        > [2] Load existing game\n\
+        > [3] End game\n\
+        > [4] Credits\n"
+    }
+    ac.main_menu("clear")
+    out, _ = capsys.readouterr()
+    sys.stdout.write(out)
+    assert menu_text in out
 
-def test_new_character():
-    pass
+'''
+
+choices = ["tgimli", "Aragorn", "1", "1", "2"]
+def test_new_character(options=choices):
+    response = ac.new_character()
+    assert response[0].__repr__() == "<Ranger Aragorn hp=500 lvl=1>"
+
 
 
 @mock_input_decorator(options=["tgimli"])

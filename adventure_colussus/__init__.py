@@ -171,7 +171,7 @@ def luck_menu() -> int:
     input()
     time.sleep(0.3)
     print_text(' > Rolling dice...\n')
-    player_luck = random.randint(0, 10)
+    player_luck = random.randint(7, 10)
     time.sleep(1)
     print_text(f' > Your hero has {player_luck} luck out of 10!\n', 0.8)
     return player_luck

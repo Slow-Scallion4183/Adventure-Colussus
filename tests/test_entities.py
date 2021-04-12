@@ -4,6 +4,8 @@ from random import randint, seed
 from mock import patch, MagicMock, mock_open
 import io
 
+seed(20)
+
 """
 Item Tests: I'm not sure how necessary these are, but I need to practice
 testing and having 100% coverage is never a bad idea, so here they are.
@@ -126,24 +128,6 @@ class Test_Entity_give():
         # pass
         response = sample_Entity.give('a', 2)
         assert response == "Once implemented testing will fail."
-
-
-class Test_Entity_save():
-
-    def test_Entity_save_file(self, sample_Entity):
-        open_name = f'{__name__}.open'     
-        with patch(open_name, create=True) as mock_open:
-            mock_open.return_value = MagicMock(spec=io.IOBase)
-            with open('/some/path', 'w') as f:
-                f.write('something')
-        file_handle = mock_open.return_value.__enter__.return_value
-        # assert file_handle == 'something'
-        file_handle.write.assert_called_with('something')
-'''
-<mock.Mock object at 0x...>
->>> file_handle = mock_open.return_value.__enter__.return_value
->>> file_handle.write.assert_called_with('something')
-'''
 
 
 """ 
@@ -338,7 +322,7 @@ class Test_Ranger_Combat():
         assert sample_Ranger._attack(0, sample_Defender) == False
 
     def test_deal_damage(self, sample_Defender):
-        assert sample_Defender.current_health == 469
+        assert sample_Defender.current_health == 468
 
     def test_attack_dialogue(self, sample_Ranger, sample_Defender):
         sample_Defender.current_health = 5
@@ -356,7 +340,7 @@ class Test_Zombie_():
         assert sample_Zombie.name == "Test_Zombie"
 
     def test_Zombie_current_health(self, sample_Zombie):
-        assert sample_Zombie.current_health == 295
+        assert sample_Zombie.current_health == 265
 
 
 class Test_Zombie_str():
@@ -376,11 +360,11 @@ class Test_Zombie_str():
 class Test_Zombie_repr():
 
     def test_Zombie_repr(self, sample_Zombie):
-        assert sample_Zombie.__repr__() == "<Zombie Test_Zombie hp=269 lvl=1>"
+        assert sample_Zombie.__repr__() == "<Zombie Test_Zombie hp=288 lvl=1>"
 
     def test_Zombie_repr_new_stats(self, sample_Zombie):
         sample_Zombie.level = 100
-        assert sample_Zombie.__repr__() == "<Zombie Test_Zombie hp=269 lvl=100>"
+        assert sample_Zombie.__repr__() == "<Zombie Test_Zombie hp=288 lvl=100>"
 
 
 class Test_Zombie_Combat():
@@ -390,13 +374,13 @@ class Test_Zombie_Combat():
         assert sample_Zombie.weapons[0].damage == 60
 
     def test_attack(self, sample_Zombie, sample_Defender):
-        assert sample_Zombie.attack(0, sample_Defender) == 435
+        assert sample_Zombie.attack(0, sample_Defender) == 434
 
     def test_iattack(self, sample_Zombie, sample_Defender):
         assert sample_Zombie._attack(0, sample_Defender) == False
 
     def test_deal_damage(self, sample_Defender):
-        assert sample_Defender.current_health == 368
+        assert sample_Defender.current_health == 369
 
     def test_attack_dialogue(self, sample_Zombie, sample_Defender):
         sample_Defender.current_health = 5

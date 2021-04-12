@@ -1,3 +1,16 @@
+import pytest
+from .test_utils import mock_input_decorator
+import adventure_colussus as ac
+
+
+
+# TODO Figure out how to test this??
+def test_main_main():
+    response = ac.__main__.main()
+    assert response == "1"    
+
+
+
 '''
 nb: entity.load()
 
