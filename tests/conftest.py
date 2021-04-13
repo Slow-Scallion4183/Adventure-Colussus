@@ -52,5 +52,15 @@ def sample_Brawler():
     brawler = ents.Brawler.generate("Test_Brawler")
     return brawler
 
+@pytest.fixture(scope="class")
+def sample_Ranger():
+    '''Distance specialist character class'''
+    ranger = ents.Ranger.generate("Test_Ranger")
+    return ranger
 
-# delete
+@pytest.fixture(scope="class")
+def sample_Zombie():
+    '''Main enemy'''
+    zombie = ents.Zombie.generate("Test_Zombie")
+    return zombie
+
