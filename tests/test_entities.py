@@ -148,8 +148,102 @@ class Test_Human_Combat():
         assert result == f"{sample_Defender.__str__()} has died."
 
 
-class Test_Brawler():
-    pass
+class Test_Brawler_():
+
+    def test_Brawler_generate(self, sample_Brawler):
+        assert type(sample_Brawler) == ents.Brawler
+
+    def test_Brawler_name(self, sample_Brawler):
+        assert sample_Brawler.name == "Test_Brawler"
+
+    def test_Brawler_current_health(self, sample_Brawler):
+        assert sample_Brawler.current_health == 174
+
+
+"""
+Brawler Method Tests: This is where it starts to get interesting.
+"""
+
+
+class Test_Brawler_str():
+
+    def test_Brawler_base_str(self, sample_Brawler):
+        assert sample_Brawler.__str__() == "The Fierce Test_Brawler"
+
+    def test_Brawler_no_name(self, sample_Brawler):
+        sample_Brawler.name = ""
+        assert sample_Brawler.__str__() == "The Fierce Brawler"
+
+    def test_Brawler_no_name_no_word(self, sample_Brawler):
+        sample_Brawler.word = ""
+        assert sample_Brawler.__str__() == "Brawler"
+
+
+class Test_Brawler_repr():
+
+    def test_Brawler_repr(self, sample_Brawler):
+        assert sample_Brawler.__repr__() == "<Brawler Test_Brawler hp=154 lvl=1>"
+
+    def test_Brawler_repr_new_stats(self, sample_Brawler):
+        sample_Brawler.level = 100
+        assert sample_Brawler.__repr__() == "<Brawler Test_Brawler hp=154 lvl=100>"
+
+
+class Test_Brawler_Calculate_Luck():
+
+    def test_calc_luck(self, sample_Brawler):
+        seed(20)
+        sample_Brawler.damage = 10
+        sample_Brawler.luck = 10
+        amount = sample_Brawler.calculate_luck(sample_Brawler.damage)
+        assert amount == 11
+
+
+class Test_Brawler_XP():
+
+    def test_add_xp(self, sample_Brawler):
+        pass
+
+
+class Test_Brawler_add_health():
+
+    def test_add_health(self, sample_Brawler):
+        sample_Brawler.add_health(10)
+        assert sample_Brawler.current_health == 121
+
+
+""" 
+Brawler Combat tests 
+"""
+
+
+class Test_Brawler_Combat():
+
+    def test_default_weapons_sword(self, sample_Brawler):
+        assert sample_Brawler.weapons[0].name == "Sword"
+        assert sample_Brawler.weapons[0].damage == 35
+
+    def test_default_weapons_hands(self, sample_Brawler):
+        assert sample_Brawler.weapons[1].name == "Hands"
+        assert sample_Brawler.weapons[1].damage == 20
+
+    def test_default_weapons_bow(self, sample_Brawler):
+        assert sample_Brawler.weapons[2].name == "Bow"
+        assert sample_Brawler.weapons[2].damage == 15
+
+    def test_attack(self, sample_Brawler, sample_Defender):
+        assert sample_Brawler.attack(0, sample_Defender) == 464
+
+    def test_iattack(self, sample_Brawler, sample_Defender):
+        assert sample_Brawler._attack(0, sample_Defender) == False
+
+    def test_deal_damage(self, sample_Defender):
+        assert sample_Defender.current_health == 428
+
+    def test_attack_dialogue(self, sample_Brawler, sample_Defender):
+        sample_Defender.current_health = 5
+        result = sample_Brawler.attack(0, sample_Defender)
+        assert result == f"{sample_Defender.__str__()} has died."
 
 
 class Test_Ranger():
@@ -160,7 +254,124 @@ class Test_Zombie():
     pass
 
 
-# spacer
+class Test_Ranger_():
+
+    def test_Ranger_generate(self, sample_Ranger):
+        assert type(sample_Ranger) == ents.Ranger
+
+    def test_Ranger_name(self, sample_Ranger):
+        assert sample_Ranger.name == "Test_Ranger"
+
+    def test_Ranger_current_health(self, sample_Ranger):
+        assert sample_Ranger.current_health == 121
 
 
-# spacer
+class Test_Ranger_str():
+
+    def test_Ranger_base_str(self, sample_Ranger):
+        assert sample_Ranger.__str__() == "Test_Ranger the Cunning"
+
+    def test_Ranger_no_name(self, sample_Ranger):
+        sample_Ranger.name = ""
+        assert sample_Ranger.__str__() == "Ranger the Cunning"
+
+    def test_Ranger_no_name_no_word(self, sample_Ranger):
+        sample_Ranger.word = ""
+        assert sample_Ranger.__str__() == "Ranger"
+
+
+class Test_Ranger_repr():
+
+    def test_Ranger_repr(self, sample_Ranger):
+        assert sample_Ranger.__repr__() == "<Ranger Test_Ranger hp=136 lvl=1>"
+
+    def test_Ranger_repr_new_stats(self, sample_Ranger):
+        sample_Ranger.level = 100
+        assert sample_Ranger.__repr__() == "<Ranger Test_Ranger hp=136 lvl=100>"
+
+
+class Test_Ranger_Combat():
+
+    def test_default_weapons_sword(self, sample_Ranger):
+        assert sample_Ranger.weapons[0].name == "Sword"
+        assert sample_Ranger.weapons[0].damage == 15
+
+    def test_default_weapons_hands(self, sample_Ranger):
+        assert sample_Ranger.weapons[1].name == "Hands"
+        assert sample_Ranger.weapons[1].damage == 10
+
+    def test_default_weapons_bow(self, sample_Ranger):
+        assert sample_Ranger.weapons[2].name == "Bow"
+        assert sample_Ranger.weapons[2].damage == 35
+
+    def test_attack(self, sample_Ranger, sample_Defender):
+        assert sample_Ranger.attack(0, sample_Defender) == 484
+
+    def test_iattack(self, sample_Ranger, sample_Defender):
+        assert sample_Ranger._attack(0, sample_Defender) == False
+
+    def test_deal_damage(self, sample_Defender):
+        assert sample_Defender.current_health == 469
+
+    def test_attack_dialogue(self, sample_Ranger, sample_Defender):
+        sample_Defender.current_health = 5
+        result = sample_Ranger.attack(0, sample_Defender)
+        assert result == f"{sample_Defender.__str__()} has died."
+
+
+
+class Test_Zombie_():
+
+    def test_Zombie_generate(self, sample_Zombie):
+        assert type(sample_Zombie) == ents.Zombie
+
+    def test_Zombie_name(self, sample_Zombie):
+        assert sample_Zombie.name == "Test_Zombie"
+
+    def test_Zombie_current_health(self, sample_Zombie):
+        assert sample_Zombie.current_health == 295
+
+
+class Test_Zombie_str():
+
+    def test_Zombie_base_str(self, sample_Zombie):
+        assert sample_Zombie.__str__() == "Test_Zombie"
+
+    def test_Zombie_no_name(self, sample_Zombie):
+        sample_Zombie.name = ""
+        assert sample_Zombie.__str__() == "Zombie"
+
+    def test_Zombie_no_name_no_word(self, sample_Zombie):
+        sample_Zombie.word = ""
+        assert sample_Zombie.__str__() == "Zombie"
+
+
+class Test_Zombie_repr():
+
+    def test_Zombie_repr(self, sample_Zombie):
+        assert sample_Zombie.__repr__() == "<Zombie Test_Zombie hp=269 lvl=1>"
+
+    def test_Zombie_repr_new_stats(self, sample_Zombie):
+        sample_Zombie.level = 100
+        assert sample_Zombie.__repr__() == "<Zombie Test_Zombie hp=269 lvl=100>"
+
+
+class Test_Zombie_Combat():
+
+    def test_default_weapons_hands(self, sample_Zombie):
+        assert sample_Zombie.weapons[0].name == "Hands"
+        assert sample_Zombie.weapons[0].damage == 60
+
+    def test_attack(self, sample_Zombie, sample_Defender):
+        assert sample_Zombie.attack(0, sample_Defender) == 435
+
+    def test_iattack(self, sample_Zombie, sample_Defender):
+        assert sample_Zombie._attack(0, sample_Defender) == False
+
+    def test_deal_damage(self, sample_Defender):
+        assert sample_Defender.current_health == 368
+
+    def test_attack_dialogue(self, sample_Zombie, sample_Defender):
+        sample_Defender.current_health = 5
+        result = sample_Zombie.attack(0, sample_Defender)
+        assert result == f"{sample_Defender.__str__()} has died."
