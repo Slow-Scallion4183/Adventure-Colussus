@@ -1,4 +1,10 @@
 import pytest
+import sys, os
+
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+
 import adventure_colussus.entities as ents
 from random import seed
 
